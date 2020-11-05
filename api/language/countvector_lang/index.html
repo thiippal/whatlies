@@ -756,8 +756,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -991,7 +1003,6 @@ yourself or use it in a scikit-learn pipeline.</p>
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">CountVectorLanguage</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">analyzer</span><span class="o">=</span><span class="s2">&quot;char&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizzas&#39;</span><span class="p">,</span> <span class="s1">&#39;firehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;firehydrant&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._countvector_lang.CountVectorLanguage.__getitem__"><code class="highlight"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._countvector_lang.CountVectorLanguage.__getitem__" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_countvector_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>109
 110
@@ -1060,7 +1071,6 @@ yourself or use it in a scikit-learn pipeline.</p>
         <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a set of embeddings.</p>
 <p><strong>Parameters</strong></p>
@@ -1087,7 +1097,6 @@ yourself or use it in a scikit-learn pipeline.</p>
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">CountVectorLanguage</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">analyzer</span><span class="o">=</span><span class="s2">&quot;char&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizzas&#39;</span><span class="p">,</span> <span class="s1">&#39;firehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;firehydrant&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._countvector_lang.CountVectorLanguage.embset_similar"><code class="highlight"><span class="n">embset_similar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._countvector_lang.CountVectorLanguage.embset_similar" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_countvector_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>198
 199
@@ -1138,7 +1147,6 @@ yourself or use it in a scikit-learn pipeline.</p>
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">({</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">embs</span><span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> that are the most similar to the passed query.
 Note that we will only consider words that were passed in the <code>.fit_manual()</code> step.</p>
@@ -1246,7 +1254,6 @@ Note that we will only consider words that were passed in the <code>.fit_manual(
         <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Fit the model manually. This way you can call <code>__getitem__</code> independantly of training.</p>
 <p><strong>Parameters</strong></p>
@@ -1274,7 +1281,6 @@ Note that we will only consider words that were passed in the <code>.fit_manual(
 <span class="o">&gt;</span> <span class="n">lang</span><span class="o">.</span><span class="n">fit_manual</span><span class="p">([</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizzas&#39;</span><span class="p">,</span> <span class="s1">&#39;firehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;firehydrant&#39;</span><span class="p">])</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;piza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizzaz&#39;</span><span class="p">,</span> <span class="s1">&#39;fyrehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;firehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;fyrehidrant&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._countvector_lang.CountVectorLanguage.score_similar"><code class="highlight"><span class="n">score_similar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._countvector_lang.CountVectorLanguage.score_similar" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_countvector_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>158
 159
@@ -1355,7 +1361,6 @@ Note that we will only consider words that were passed in the <code>.fit_manual(
         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">by_similarity</span><span class="p">[:</span><span class="n">n</span><span class="p">]]</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a list of (Embedding, score) tuples that are the most similar to the passed query.
 Note that we will only consider words that were passed in the <code>.fit_manual()</code> step.</p>

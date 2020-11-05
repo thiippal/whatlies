@@ -749,8 +749,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -918,7 +930,6 @@ you could write scikit-learn pipelines like this:</p>
 
 <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div>
-
 <p>This pipeline is using the embeddings from spaCy now and passing those
 to the logistic regression.</p>
 <div class="highlight"><pre><span></span><code>pipe.predict_proba(X)
@@ -929,7 +940,6 @@ to the logistic regression.</p>
 #        [0.64924579, 0.35075421],
 #        [0.76414156, 0.23585844]])
 </code></pre></div>
-
 <p>You could make a pipeline that generates both dense and sparse features by using a
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html">FeatureUnion</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">FeatureUnion</span>
@@ -940,7 +950,6 @@ to the logistic regression.</p>
     <span class="p">(</span><span class="s2">&quot;sparse&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">())</span>
 <span class="p">])</span>
 </code></pre></div>
-
 <h3 id="supported-models">Supported Models<a class="headerlink" href="#supported-models" title="Permanent link">&para;</a></h3>
 <p>The following language backends can be used as scikit-learn feature transformations.</p>
 <ul>
@@ -948,17 +957,18 @@ to the logistic regression.</p>
 <li><code>whatlies.language.FasttextLanguage</code></li>
 <li><code>whatlies.language.CountVectorLanguage</code></li>
 <li><code>whatlies.language.BytePairLanguage</code></li>
-<li><code>whatlies.language.ConveRTLanguage</code></li>
 <li><code>whatlies.language.GensimLanguage</code></li>
 <li><code>whatlies.language.HFTransformersLanguage</code></li>
 <li><code>whatlies.language.TFHubLanguage</code></li>
+<li><code>whatlies.language.UniversalSentenceLanguage</code></li>
+<li><code>whatlies.language.SentenceTFMLanguage</code></li>
 </ul>
 <h3 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h3>
 <p>There's a few caveats to be aware of though. Fasttext as well as spaCy cannot be directly pickled
 so that means that you won't be able to save a pipeline if there's a whatlies component
 in it. This also means that you cannot use a gridsearch. Where possible we try to
-test against scikit-learn's testing utilities but for now the usecases should assume that you
-cannot use <code>GridSearchCV</code> and that you cannot pickle to disk.</p>
+test against scikit-learn's testing utilities but for now the use-case is limited for use in
+a <code>Pipeline</code>. You should assume that you cannot use <code>GridSearchCV</code> and that you cannot pickle to disk.</p>
 <p>If you see a way to properly support this in general, let us know on github by creating an <a href="https://github.com/RasaHQ/whatlies/issues">issue</a>.</p>
                 
                   

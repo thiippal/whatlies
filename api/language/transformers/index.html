@@ -735,8 +735,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -871,7 +883,6 @@ unless you installed via either;</p>
 <div class="highlight"><pre><span></span><code>pip install whatlies[transformers]
 pip install whatlies[all]
 </code></pre></div>
-
 </div>
 <p><strong>Parameters</strong></p>
 <table>
@@ -905,7 +916,6 @@ pip install whatlies[all]
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">HFTransformersLanguage</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;day and night&#39;</span><span class="p">,</span> <span class="s1">&#39;it is as clear as day&#39;</span><span class="p">,</span> <span class="s1">&#39;today the sky is clear&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._hftransformers_lang.HFTransformersLanguage.__getitem__"><code class="highlight"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._hftransformers_lang.HFTransformersLanguage.__getitem__" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_hftransformers_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>53
 54
@@ -960,7 +970,6 @@ pip install whatlies[all]
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_embedding</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">query</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a single embedding or a set of embeddings.</p>
 <p><strong>Parameters</strong></p>

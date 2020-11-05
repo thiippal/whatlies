@@ -693,8 +693,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -1057,7 +1069,6 @@ by Hila Gonen and Yoav Goldberg.</p>
 
 <span class="n">make_correlation_plot</span><span class="p">(</span><span class="n">pairs</span><span class="o">=</span><span class="n">all_pairs</span><span class="p">,</span> <span class="n">language_model</span><span class="o">=</span><span class="n">lang_ft</span><span class="p">)</span>
 </code></pre></div>
-
 <p>This code generates a similarity chart for fasttext embeddings, shown below.</p>
 <p><img alt="" src="../imgs/bias.png" /></p>
 <p>Notice, that we indeed see correlation. The "gender" direction seems to correlate with the "doctor-nurse" direction. We'd prefer if it simply were zero.</p>
@@ -1111,7 +1122,6 @@ by Hila Gonen and Yoav Goldberg.</p>
 
 <span class="n">make_debias_correlation_plot</span><span class="p">(</span><span class="n">pairs</span><span class="o">=</span><span class="n">all_pairs</span><span class="p">,</span> <span class="n">language_model</span><span class="o">=</span><span class="n">lang_ft</span><span class="p">)</span>
 </code></pre></div>
-
 <p>We'll now display the "before" as well as "after" chart.</p>
 <p><img alt="" src="../imgs/before-after.png" /></p>
 <p>It's not a perfect removal of the similarity. But we can confirm that at least visually, it seems "less".</p>
@@ -1143,7 +1153,6 @@ The original, and larger, datasets can be found <a href="https://github.com/ucla
 
 <span class="n">emb_debias</span> <span class="o">=</span> <span class="n">e1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">lang</span><span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">])</span>
 </code></pre></div>
-
 <p>Next, we'll use the fasttext language backend as a scikit-learn featurizer.
 You can read more on this feature <a href="https://rasahq.github.io/whatlies/tutorial/scikit-learn/">here</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
@@ -1160,7 +1169,6 @@ You can read more on this feature <a href="https://rasahq.github.io/whatlies/tut
     <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
 <span class="p">])</span>
 </code></pre></div>
-
 <p>This pipeline can now be used to make predictions. Currently we do not perform any debiasing,
 so let's have a look at how well we can predict gender now.</p>
 <h3 id="method-i-biased-embedding-biased-model">Method I: Biased Embedding, Biased Model<a class="headerlink" href="#method-i-biased-embedding-biased-model" title="Permanent link">&para;</a></h3>
@@ -1177,7 +1185,6 @@ so let's have a look at how well we can predict gender now.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 </code></pre></div>
-
 <p>This gives us the following result:</p>
 <div class="highlight"><pre><span></span><code>              precision    recall  f1-score   support
 
@@ -1188,7 +1195,6 @@ so let's have a look at how well we can predict gender now.</p>
    macro avg       0.90      0.91      0.90       209
 weighted avg       0.91      0.90      0.90       209
 </code></pre></div>
-
 <p>It seems that the information that is in the embeddings now give us a 90%
 accuracy on our test set.</p>
 <h3 id="method-ii-unbiased-embedding-biased-model">Method II: UnBiased Embedding, Biased Model<a class="headerlink" href="#method-ii-unbiased-embedding-biased-model" title="Permanent link">&para;</a></h3>
@@ -1203,7 +1209,6 @@ to no longer be able to predict the gender.</p>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span><span class="p">))</span>
 </code></pre></div>
-
 <p>This gives the following result:</p>
 <div class="highlight"><pre><span></span><code>              precision    recall  f1-score   support
 
@@ -1214,7 +1219,6 @@ to no longer be able to predict the gender.</p>
    macro avg       0.82      0.84      0.81       209
 weighted avg       0.86      0.81      0.82       209
 </code></pre></div>
-
 <p>We're using the same model as before, but now we're giving it the debiased
 vectors to predict on. Despite being trained on a different dataset, we're still
 able to predict 81% of the cases accurately. This does not bode well for our debiasing
@@ -1227,7 +1231,6 @@ the unbiased vectors.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code>              precision    recall  f1-score   support
 
       female       0.80      0.83      0.81        94
@@ -1237,7 +1240,6 @@ the unbiased vectors.</p>
    macro avg       0.83      0.83      0.83       209
 weighted avg       0.83      0.83      0.83       209
 </code></pre></div>
-
 <p>If we train a model on the debiased embeddings and also apply it to another
 debiased set we're able to get 83% of the cases right. We were hoping more
 around 50% here.</p>
@@ -1270,7 +1272,7 @@ in practice.</p>
       <div class="md-footer-nav">
         <nav class="md-footer-nav__inner md-grid">
           
-            <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
                 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
               </div>
@@ -1279,7 +1281,7 @@ in practice.</p>
                   <span class="md-footer-nav__direction">
                     Previous
                   </span>
-                  Universal Sentence Encoder
+                  Sent TFM
                 </span>
               </div>
             </a>

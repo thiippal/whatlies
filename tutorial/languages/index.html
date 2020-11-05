@@ -756,8 +756,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -906,9 +918,7 @@
                   <h1>Language Options</h1>
                 
                 <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.6.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.3.2"></script>
 
 <p>In this tool we have support for different language backends and
@@ -929,7 +939,6 @@ depending on the language backend you may get slightly different behavior.</p>
 <span class="n">emb</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="n">contexts</span><span class="p">]</span>
 <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <div id="c1"></div>
 
 <script>
@@ -949,7 +958,6 @@ we can play with a extra bit of context.</p>
 <div class="highlight"><pre><span></span><code>pip install spacy-transformers
 python -m spacy download en_trf_robertabase_lg
 </code></pre></div>
-
 <p>With these installed we can now use the same spaCy language
 backend to play with transformers. Here's an example of
 two embeddings selected with context.</p>
@@ -958,7 +966,6 @@ two embeddings selected with context.</p>
 <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">lang</span><span class="p">[</span><span class="s1">&#39;Going to the [store]&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">vector</span><span class="p">,</span>
                <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;[store] this in the drawer please.&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">vector</span><span class="p">)</span>  <span class="c1"># False</span>
 </code></pre></div>
-
 <p>In the first case we get the embedding for <code>store</code> in the context of
 <code>Going to the store</code> while in the second case we have <code>store</code> in the
 context of <code>store this in the drawer please</code>.</p>
@@ -967,7 +974,6 @@ context of <code>store this in the drawer please</code>.</p>
 them you'll need to make sure that you install via:</p>
 <div class="highlight"><pre><span></span><code>pip install whatlies[sense2vec]
 </code></pre></div>
-
 <p>Once the dependency is installed you can download and unzip the pretrained vectors
 found <a href="https://github.com/explosion/sense2vec#pretrained-vectors">here</a>. After
 that you should be able to retreive tokens with context. They way you fetch these
@@ -982,7 +988,6 @@ tokens is a bit ... different though.</p>
          <span class="s2">&quot;chicken|NOUN&quot;</span><span class="p">,</span> <span class="s2">&quot;puppy|NOUN&quot;</span><span class="p">,</span> <span class="s2">&quot;kitten|NOUN&quot;</span><span class="p">,</span> <span class="s2">&quot;carrot|NOUN&quot;</span><span class="p">]</span>
 <span class="n">emb</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="n">words</span><span class="p">]</span>
 </code></pre></div>
-
 <p>You're able to distinguish the verb "duck" from the animal "duck".
 From here one we're back to normal embeddingsets though. So we can
 plot whatever we feel like.</p>
@@ -990,7 +995,6 @@ plot whatever we feel like.</p>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">()</span>
 <span class="n">p1</span> <span class="o">|</span> <span class="n">p2</span>
 </code></pre></div>
-
 <div id="s1"></div>
 
 <script>
@@ -1008,7 +1012,6 @@ fetch('sense2vec-1.json')
 tokens that are nearby. We could do the following.</p>
 <div class="highlight"><pre><span></span><code><span class="n">lang</span><span class="o">.</span><span class="n">score_similar</span><span class="p">(</span><span class="s2">&quot;duck|VERB&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <p>This will result in a long list with embedding-score tuples.</p>
 <div class="highlight"><pre><span></span><code>[(Emb[crouch|VERB], 0.8064),
  (Emb[ducking|VERB], 0.7877),
@@ -1021,7 +1024,6 @@ tokens that are nearby. We could do the following.</p>
  (Emb[bonk|VERB], 0.7495),
  (Emb[backflip|VERB], 0.746)]
 </code></pre></div>
-
 <p>We can also ask it to return an <code>EmbeddingSet</code> instead. That's what we're doing
 below. We take our original embeddingset and we merge it with two more before
 we visualise it.</p>
@@ -1034,7 +1036,6 @@ we visualise it.</p>
  <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
  <span class="o">.</span><span class="n">plot_interactive</span><span class="p">())</span>
 </code></pre></div>
-
 <div id="sense2"></div>
 
 <script>

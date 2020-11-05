@@ -801,8 +801,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -998,7 +1010,7 @@
 These charts use javascript for the interactivity and they are based on <a href="https://vega.github.io/vega-lite/">vega</a>.
 You can represent the entire chart (including the data) as a json object. This means that you can always
 save a visluatisation as an html page or as a json file.</p>
-<pre><code class="python">from whatlies.language import SpacyLanguage
+<pre><code class="language-python">from whatlies.language import SpacyLanguage
 
 words = [&quot;prince&quot;, &quot;princess&quot;, &quot;nurse&quot;, &quot;doctor&quot;, &quot;banker&quot;, &quot;man&quot;, &quot;woman&quot;,
          &quot;cousin&quot;, &quot;neice&quot;, &quot;king&quot;, &quot;queen&quot;, &quot;dude&quot;, &quot;guy&quot;, &quot;gal&quot;, &quot;fire&quot;,
@@ -1012,7 +1024,6 @@ p = emb.plot_interactive('man', 'woman')
 p.to_html(&quot;plot.html&quot;)
 p.to_json(&quot;plot.json&quot;)
 </code></pre>
-
 <p>A tutorial on how this works exactly can be found <a href="https://calmcode.io/altair/json.html">here</a>.</p>
 <h3 id="how-do-i-save-an-interactive-chart-for-publication">How do I save an interactive chart for publication?<a class="headerlink" href="#how-do-i-save-an-interactive-chart-for-publication" title="Permanent link">&para;</a></h3>
 <p>You can also choose to save an interactive chart as an svg/png/pdf if you're interested
@@ -1023,9 +1034,8 @@ in short you'll need to install the <code>altair_saver</code> package for this f
 dependencies though. To install them locally in your project run;</p>
 <pre><code>npm install vega-lite vega-cli canvas
 </code></pre>
-
 <p>Once these are all installed, the following code snippet will work;</p>
-<pre><code class="python">from whatlies.language import SpacyLanguage
+<pre><code class="language-python">from whatlies.language import SpacyLanguage
 from altair_saver import save
 
 words = [&quot;prince&quot;, &quot;princess&quot;, &quot;nurse&quot;, &quot;doctor&quot;, &quot;banker&quot;, &quot;man&quot;, &quot;woman&quot;,
@@ -1039,13 +1049,12 @@ emb = lang[words]
 p = emb.plot_interactive('man', 'woman')
 save(p, &quot;chart.png&quot;)
 </code></pre>
-
 <p>This saves the following chart on disk;</p>
 <p><img alt="" src="../images/chart.png" /></p>
 <h3 id="how-do-i-change-the-titlesize-of-the-interactive-chart">How do I change the title/size of the interactive chart?<a class="headerlink" href="#how-do-i-change-the-titlesize-of-the-interactive-chart" title="Permanent link">&para;</a></h3>
 <p>The interactive charts are <a href="https://altair-viz.github.io/index.html">Altair</a> charts
 and that means that you could do something like this:</p>
-<pre><code class="python">from whatlies.language import SpacyLanguage
+<pre><code class="language-python">from whatlies.language import SpacyLanguage
 
 words = [&quot;prince&quot;, &quot;princess&quot;, &quot;nurse&quot;, &quot;doctor&quot;, &quot;banker&quot;, &quot;man&quot;, &quot;woman&quot;,
          &quot;cousin&quot;, &quot;neice&quot;, &quot;king&quot;, &quot;queen&quot;, &quot;dude&quot;, &quot;guy&quot;, &quot;gal&quot;, &quot;fire&quot;,
@@ -1059,23 +1068,20 @@ p = emb.plot_interactive('man', 'woman')
 
 p.properties(title=&quot;spaCy&quot;, height=200, width=200)
 </code></pre>
-
 <p>One common feature is that you might set the <code>width</code> to the container size
 in order to achieve 100% width.</p>
 <pre><code>p.properties(title=&quot;spaCy&quot;, height=200, width=&quot;container&quot;)
 </code></pre>
-
 <h2 id="languages">Languages<a class="headerlink" href="#languages" title="Permanent link">&para;</a></h2>
 <h3 id="how-do-i-access-nearest-tokens-from-a-language-model">How do I access nearest tokens from a language model?<a class="headerlink" href="#how-do-i-access-nearest-tokens-from-a-language-model" title="Permanent link">&para;</a></h3>
 <p>This depends on the language model, please check the docs, but most
 language models will have a <code>score_similar</code> method attached.</p>
-<pre><code class="python">from whatlies.language import BytePairLanguage
+<pre><code class="language-python">from whatlies.language import BytePairLanguage
 lang = BytePairLanguage(&quot;en&quot;)
 lang.score_similar(&quot;king&quot;)
 </code></pre>
-
 <p>This code snippet will return yield;</p>
-<pre><code class="python">[(Emb[king], 1.1102230246251565e-16),
+<pre><code class="language-python">[(Emb[king], 1.1102230246251565e-16),
  (Emb[▁king], 0.23501371664985227),
  (Emb[iv], 0.33016763827104456),
  (Emb[▁throne], 0.3366865106345296),
@@ -1086,25 +1092,22 @@ lang.score_similar(&quot;king&quot;)
  (Emb[son], 0.3892961048683081),
  (Emb[ivals], 0.3904733871620414)]
 </code></pre>
-
 <p>In this case you'll see subword embeddings being return because that is what this
 language model uses internally. Language models using spaCy would use full tokens.</p>
 <h3 id="how-do-i-access-nearest-tokens-from-a-language-model-using-an-embedding">How do I access nearest tokens from a language model using an embedding?<a class="headerlink" href="#how-do-i-access-nearest-tokens-from-a-language-model-using-an-embedding" title="Permanent link">&para;</a></h3>
 <p>You can pass this method a string, but also an embedding object. Ths can contain
 a custom vector but you can also construct an embedding via operations. This makes the
 API a lot more flexible. For example, we can construct this embedding;</p>
-<pre><code class="python">from whatlies.language import BytePairLanguage
+<pre><code class="language-python">from whatlies.language import BytePairLanguage
 lang = BytePairLanguage(&quot;en&quot;)
 kmw = lang[&quot;king&quot;] - lang[&quot;man&quot;] + lang[&quot;woman&quot;]
 # Emb[((king - man) + woman)]
 </code></pre>
-
 <p>And use this embedding in our language model to retreive similar items.</p>
-<pre><code class="python">lang.score_similar(kmw, n=7)
+<pre><code class="language-python">lang.score_similar(kmw, n=7)
 </code></pre>
-
 <p>This yields.</p>
-<pre><code class="python">[(Emb[king], 0.2620711370759745),
+<pre><code class="language-python">[(Emb[king], 0.2620711370759745),
  (Emb[mother], 0.36575381150291),
  (Emb[father], 0.39737356910585997),
  (Emb[▁queen], 0.43554929266740294),
@@ -1112,19 +1115,17 @@ kmw = lang[&quot;king&quot;] - lang[&quot;man&quot;] + lang[&quot;woman&quot;]
  (Emb[▁throne], 0.47000919280368636),
  (Emb[mary], 0.4771824121946612)]
 </code></pre>
-
 <p>Note that in general we're using cosine distance here but you can also pass the
 <code>.score_similar</code> method a <code>metric</code> so select other metrics that are compatible with
 scikit-learn.</p>
 <h3 id="how-do-i-retreive-an-embedding-set-from-language-model-using-similar-tokens">How do I retreive an embedding set from language model using similar tokens?<a class="headerlink" href="#how-do-i-retreive-an-embedding-set-from-language-model-using-similar-tokens" title="Permanent link">&para;</a></h3>
 <p>You can use the same flow we used in the previous two questions to generate an
 embedding set that can be used for plotting.</p>
-<pre><code class="python">from whatlies.language import BytePairLanguage
+<pre><code class="language-python">from whatlies.language import BytePairLanguage
 lang = BytePairLanguage(&quot;en&quot;)
 kmw = lang[&quot;king&quot;] - lang[&quot;man&quot;] + lang[&quot;woman&quot;]
 emb_king = lang.embset_similar(kmw, n=20)
 </code></pre>
-
 <h2 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h2>
 <p>This project depends on a lot of backends so there's a risk of breaking changes whenever
 we upgrade to a new version of a backend. The goal of this table is to list keep track of

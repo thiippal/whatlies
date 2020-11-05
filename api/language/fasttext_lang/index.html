@@ -756,8 +756,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -928,7 +940,6 @@ To train your own fasttext model see the guide <a href="https://fasttext.cc/docs
 &gt; model.save_model(&quot;result/data-skipgram-20.bin&quot;)
 &gt; lang = FasttextLanguage(&quot;result/data-skipgram-20.bin&quot;)
 </code></pre></div>
-
 <p>But you need to be aware that the fasttext library from facebook has gone stale.
 Last update on pypi was June 2019. Our preferred usecase for it is to use the pretrained vectors.
 Note that you can also import these via spaCy but this requires a packaging step.</p>
@@ -959,7 +970,6 @@ Note that you can also import these via spaCy but this requires a packaging step
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">FasttextLanguage</span><span class="p">(</span><span class="s2">&quot;cc.en.300.bin&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;snake&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._fasttext_lang.FasttextLanguage.__getitem__"><code class="highlight"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._fasttext_lang.FasttextLanguage.__getitem__" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_fasttext_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 88
  89
@@ -1006,7 +1016,6 @@ Note that you can also import these via spaCy but this requires a packaging step
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">tok</span><span class="p">]</span> <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">query</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a single embedding or a set of embeddings. Depending on the spaCy model
 the strings can support multiple tokens of text but they can also use the Bert DSL.
@@ -1096,7 +1105,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> or embeddings that are within a proximity.</p>
 <p><strong>Parameters</strong></p>
@@ -1213,7 +1221,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">({</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">embs</span><span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> that are the most similar to the passed query.</p>
 <p><strong>Parameters</strong></p>
@@ -1359,7 +1366,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">by_similarity</span><span class="p">[:</span><span class="n">n</span><span class="p">]]</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a list of (Embedding, score) tuples that are the most similar to the passed query.</p>
 <p><strong>Parameters</strong></p>

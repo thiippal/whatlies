@@ -749,8 +749,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -913,7 +925,6 @@ backend. This object is meant for retreival, not plotting.</p>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;bank|NOUN&#39;</span><span class="p">]</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;bank|VERB&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The reddit vectors are not given by this library.
@@ -957,7 +968,6 @@ You can find the download link <a href="https://github.com/explosion/sense2vec#p
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">tok</span><span class="p">]</span> <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">query</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a single embedding or a set of embeddings.</p>
 <p><strong>Parameters</strong></p>
@@ -1016,7 +1026,6 @@ You can find the download link <a href="https://github.com/explosion/sense2vec#p
         <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> that are the most simmilar to the passed query.</p>
 <p><strong>Parameters</strong></p>
@@ -1085,7 +1094,6 @@ You can find the download link <a href="https://github.com/explosion/sense2vec#p
         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="p">[</span><span class="n">tok</span><span class="p">],</span> <span class="n">sim</span><span class="p">)</span> <span class="k">for</span> <span class="n">tok</span><span class="p">,</span> <span class="n">sim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">s2v</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)]</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an EmbeddingSet that are the most simmilar to the passed query.</p>
 <p><strong>Parameters</strong></p>

@@ -749,8 +749,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -901,7 +913,6 @@ from gensim.models import Word2Vec
 model = Word2Vec(common_texts, size=10, window=5, min_count=1, workers=4)
 model.wv.save(&quot;wordvectors.kv&quot;)
 </code></pre></div>
-
 <p>You can also download pre-trained embeddings that are hosted by the gensim project.</p>
 <div class="highlight"><pre><span></span><code>import gensim.downloader as api
 # To check what models are available
@@ -912,7 +923,6 @@ wv = api.load(&#39;glove-twitter-25&#39;)
 # vectors and save them someplace else if you&#39;d like.
 wv.save(&quot;glove-twitter-25.kv&quot;)
 </code></pre></div>
-
 <p>Note that if a word is not available in the keyed vectors file then we'll assume
 a zero vector. If you pass a sentence then we'll add together the embeddings vectors
 of the seperate words.</p>
@@ -943,7 +953,6 @@ of the seperate words.</p>
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">GensimLanguage</span><span class="p">(</span><span class="s2">&quot;wordvectors.kv&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;computer&#39;</span><span class="p">,</span> <span class="s1">&#39;human&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">]]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._gensim_lang.GensimLanguage.__getitem__"><code class="highlight"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._gensim_lang.GensimLanguage.__getitem__" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_gensim_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>69
 70
@@ -1000,7 +1009,6 @@ of the seperate words.</p>
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">tok</span><span class="p">]</span> <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">query</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a single embedding or a set of embeddings.</p>
 <p><strong>Parameters</strong></p>
@@ -1077,7 +1085,6 @@ of the seperate words.</p>
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">({</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">embs</span><span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> that are the most similar to the passed query.</p>
 <p><strong>Parameters</strong></p>
@@ -1200,7 +1207,6 @@ of the seperate words.</p>
         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">by_similarity</span><span class="p">[:</span><span class="n">n</span><span class="p">]]</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a list of (Embedding, score) tuples that are the most similar to the passed query.</p>
 <p><strong>Parameters</strong></p>

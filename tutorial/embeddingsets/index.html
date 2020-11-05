@@ -803,8 +803,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -1000,9 +1012,7 @@
                   <h1>Interactive Visualisation</h1>
                 
                 <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.6.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.3.2"></script>
 
 <h2 id="sets-of-embeddings">Sets of Embeddings<a class="headerlink" href="#sets-of-embeddings" title="Permanent link">&para;</a></h2>
@@ -1024,7 +1034,6 @@ convenient. You can create an</p>
 
 <span class="n">emb</span> <span class="o">=</span> <span class="n">EmbeddingSet</span><span class="p">({</span><span class="n">t</span><span class="o">.</span><span class="n">text</span><span class="p">:</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">vector</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">nlp</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">words</span><span class="p">)})</span>
 </code></pre></div>
-
 <p>This can be especially useful if you're creating your own embeddings.</p>
 <h3 id="via-languages">Via Languages<a class="headerlink" href="#via-languages" title="Permanent link">&para;</a></h3>
 <p>But odds are that you just want to grab a language model from elsewhere.
@@ -1040,12 +1049,10 @@ of getting sets of embeddings (typically more performant too).</p>
 <span class="n">lang</span> <span class="o">=</span> <span class="n">SpacyLanguage</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
 <span class="n">emb</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="n">words</span><span class="p">]</span>
 </code></pre></div>
-
 <h2 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h2>
 <p>Either way, with an <code>EmbeddingSet</code> you can create meaningful interactive charts.</p>
 <div class="highlight"><pre><span></span><code><span class="n">emb</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">,</span> <span class="s1">&#39;woman&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 <div id="vis1"></div>
 
 <script>
@@ -1060,12 +1067,10 @@ fetch('tut2-chart1.json')
 <p>We can also retreive embeddings from the embeddingset.</p>
 <div class="highlight"><pre><span></span><code><span class="n">emb</span><span class="p">[</span><span class="s1">&#39;king&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <p>Remember the operations we did before? We can also do that on these sets!</p>
 <div class="highlight"><pre><span></span><code><span class="n">new_emb</span> <span class="o">=</span> <span class="n">emb</span> <span class="o">|</span> <span class="p">(</span><span class="n">emb</span><span class="p">[</span><span class="s1">&#39;king&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">emb</span><span class="p">[</span><span class="s1">&#39;queen&#39;</span><span class="p">])</span>
 <span class="n">new_emb</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">,</span> <span class="s1">&#39;woman&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 <div id="vis2"></div>
 
 <script>
@@ -1084,7 +1089,6 @@ charts with altair we get a nice api to stack charts next to eachother.</p>
 <span class="n">new_chart</span> <span class="o">=</span> <span class="n">new_emb</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">,</span> <span class="s1">&#39;woman&#39;</span><span class="p">)</span>
 <span class="n">orig_chart</span> <span class="o">|</span> <span class="n">new_chart</span>
 </code></pre></div>
-
 <div id="vis3"></div>
 
 <script>
@@ -1107,7 +1111,6 @@ hosted on the web.</p>
 <span class="n">pca_emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">umap_emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Umap</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
-
 <p>The transform method is able to take a transformation, let's say <code>pca(2)</code> and this will change
 the embeddings in the set. It might also create new embeddings. In case of <code>pca(2)</code> it will
 also add two embeddings which represent the principal components. This is nice because
@@ -1116,7 +1119,6 @@ that means that we can plot along those axes.</p>
 <span class="n">plot_umap</span> <span class="o">=</span> <span class="n">umap_emb</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">()</span>
 <span class="n">plot_pca</span> <span class="o">|</span> <span class="n">plot_umap</span>
 </code></pre></div>
-
 <div id="vis4"></div>
 
 <script>
@@ -1134,7 +1136,6 @@ transformation pipeline.</p>
 <div class="highlight"><pre><span></span><code><span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span> <span class="o">|</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;man&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span><span class="p">[</span><span class="s2">&quot;woman&quot;</span><span class="p">]))</span>
 <span class="c1"># (Emb | (Emb[man] - Emb[woman])).pca_2()</span>
 </code></pre></div>
-
 <h3 id="more-components">More Components<a class="headerlink" href="#more-components" title="Permanent link">&para;</a></h3>
 <p>Suppose now that we'd like to visualise three principal components. We could do this.</p>
 <div class="highlight"><pre><span></span><code><span class="n">pca_emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -1142,7 +1143,6 @@ transformation pipeline.</p>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">pca_emb</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">p1</span> <span class="o">|</span> <span class="n">p2</span>
 </code></pre></div>
-
 <div id="vis5"></div>
 
 <script>
@@ -1156,9 +1156,10 @@ fetch('tut2-chart5.json')
 
 <h3 id="more-charts">More Charts<a class="headerlink" href="#more-charts" title="Permanent link">&para;</a></h3>
 <p>Let's not draw two components at a time, let's draw all of them.</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">pca_emb</span><span class="o">.</span><span class="n">plot_interactive_matrix</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">pca_emb</span><span class="o">.</span><span class="n">plot_interactive_matrix</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-<div id="vis6"></div></p>
+<div id="vis6"></div>
+
 <script>
 fetch('tut2-chart6.json')
 .then(res => res.json())

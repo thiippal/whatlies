@@ -763,8 +763,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -943,7 +955,6 @@ backend. This object is meant for retreival, not plotting.</p>
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">SpacyLanguage</span><span class="p">(</span><span class="s2">&quot;en_trf_robertabase_lg&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;programming in [python]&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._spacy_lang.SpacyLanguage.__getitem__"><code class="highlight"><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._spacy_lang.SpacyLanguage.__getitem__" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_spacy_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>101
 102
@@ -994,7 +1005,6 @@ backend. This object is meant for retreival, not plotting.</p>
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_embedding</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">query</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a single embedding or a set of embeddings. Depending on the spaCy model
 the strings can support multiple tokens of text but they can also use the Bert DSL.
@@ -1086,7 +1096,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> or embeddings that are within a proximity.</p>
 <p><strong>Parameters</strong></p>
@@ -1195,7 +1204,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">({</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">embs</span><span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive an <a href="/whatlies/api/embeddingset/#whatlies.embeddingset.EmbeddingSet">EmbeddingSet</a> that are the most simmilar to the passed query.</p>
 <p><strong>Parameters</strong></p>
@@ -1328,7 +1336,6 @@ See the Language Options documentation: https://rasahq.github.io/whatlies/tutori
         <span class="k">return</span> <span class="n">SpacyLanguage</span><span class="p">(</span><span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">output_dir</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Will load downloaded fasttext vectors. It will try to load from disk, but if there is no local
 spaCy model then we will first convert from the vec.gz file into a spaCy model. This
@@ -1380,7 +1387,6 @@ Note that these files are large and loading them can take a long time.</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">SpacyLanguage</span><span class="o">.</span><span class="n">from_fasttext</span><span class="p">(</span><span class="s2">&quot;nl&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/spacy/model&quot;</span><span class="p">,</span> <span class="s2">&quot;~/Downloads/cc.nl.300.vec.gz&quot;</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">SpacyLanguage</span><span class="o">.</span><span class="n">from_fasttext</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/spacy/model&quot;</span><span class="p">,</span> <span class="s2">&quot;~/Downloads/cc.en.300.vec.gz&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h2 id="whatlies.language._spacy_lang.SpacyLanguage.score_similar"><code class="highlight"><span class="n">score_similar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">prob_limit</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.language._spacy_lang.SpacyLanguage.score_similar" title="Permanent link">&para;</a></h2>
 <details class="note"><summary>Show source code in <code>language/_spacy_lang.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>220
 221
@@ -1453,7 +1459,6 @@ Note that these files are large and loading them can take a long time.</p>
         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">text</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">by_similarity</span><span class="p">[:</span><span class="n">n</span><span class="p">]]</span>
 </code></pre></div>
 </td></tr></table>
-
 </details>
 <p>Retreive a list of (Embedding, score) tuples that are the most simmilar to the passed query.</p>
 <p><strong>Parameters</strong></p>

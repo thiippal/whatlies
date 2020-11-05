@@ -525,45 +525,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        OpenTsne
-      </label>
-    
     <a href="./" title="OpenTsne" class="md-nav__link md-nav__link--active">
       OpenTsne
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._opentsne.OpenTsne.fit" class="md-nav__link">
-    fit()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._opentsne.OpenTsne.transform" class="md-nav__link">
-    transform()
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -742,8 +706,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -835,29 +811,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._opentsne.OpenTsne.fit" class="md-nav__link">
-    fit()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._opentsne.OpenTsne.transform" class="md-nav__link">
-    transform()
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -884,7 +837,6 @@ unless you installed via either;</p>
 <div class="highlight"><pre><span></span><code>pip install whatlies[opentsne]
 pip install whatlies[all]
 </code></pre></div>
-
 </div>
 <p><strong>Parameters</strong></p>
 <table>
@@ -925,76 +877,6 @@ pip install whatlies[all]
 
 <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">OpenTsne</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive_matrix</span><span class="p">()</span>
 </code></pre></div>
-
-<h2 id="whatlies.transformers._opentsne.OpenTsne.fit"><code class="highlight"><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.transformers._opentsne.OpenTsne.fit" title="Permanent link">&para;</a></h2>
-<details class="note"><summary>Show source code in <code>transformers/_opentsne.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>55
-56
-57
-58
-59</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">):</span>
-        <span class="n">names</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">to_names_X</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tfm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span>
-</code></pre></div>
-</td></tr></table>
-
-</details>
-<p>Fit the transformer on the given <code>EmbeddingSet</code> instance (if neccessary). This method should
-set the <code>is_fitted</code> flag to <code>True</code>.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>embset</code></td>
-<td></td>
-<td>an <code>EmbeddingSet</code> instance used for fitting the transformer.</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="whatlies.transformers._opentsne.OpenTsne.transform"><code class="highlight"><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.transformers._opentsne.OpenTsne.transform" title="Permanent link">&para;</a></h2>
-<details class="note"><summary>Show source code in <code>transformers/_opentsne.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>61
-62
-63
-64
-65</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">):</span>
-        <span class="n">names</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">to_names_X</span><span class="p">()</span>
-        <span class="n">new_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-        <span class="n">new_dict</span> <span class="o">=</span> <span class="n">new_embedding_dict</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">new_vecs</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="n">new_dict</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">embset</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.tsne_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-
-</details>
-<p>Transform the given <code>EmbeddingSet</code> instance.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>embset</code></td>
-<td></td>
-<td>an <code>EmbeddingSet</code> instance to be transformed.</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
                 
                   
                 

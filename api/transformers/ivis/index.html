@@ -561,45 +561,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Ivis
-      </label>
-    
     <a href="./" title="Ivis" class="md-nav__link md-nav__link--active">
       Ivis
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._ivis.Ivis.fit" class="md-nav__link">
-    fit()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._ivis.Ivis.transform" class="md-nav__link">
-    transform()
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -742,8 +706,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -835,29 +811,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._ivis.Ivis.fit" class="md-nav__link">
-    fit()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whatlies.transformers._ivis.Ivis.transform" class="md-nav__link">
-    transform()
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -882,7 +835,6 @@ unless you installed via either;</p>
 <div class="highlight"><pre><span></span><code>pip install whatlies[ivis]
 pip install whatlies[all]
 </code></pre></div>
-
 </div>
 <p><strong>Parameters</strong></p>
 <table>
@@ -910,7 +862,7 @@ pip install whatlies[all]
 </tbody>
 </table>
 <p>Usage:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">GensimLanguage</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">SpacyLanguage</span>
 <span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Ivis</span>
 
 <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;prince&quot;</span><span class="p">,</span> <span class="s2">&quot;princess&quot;</span><span class="p">,</span> <span class="s2">&quot;nurse&quot;</span><span class="p">,</span> <span class="s2">&quot;doctor&quot;</span><span class="p">,</span> <span class="s2">&quot;banker&quot;</span><span class="p">,</span> <span class="s2">&quot;man&quot;</span><span class="p">,</span> <span class="s2">&quot;woman&quot;</span><span class="p">,</span>
@@ -918,80 +870,10 @@ pip install whatlies[all]
          <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;mouse&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;bluee&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;water&quot;</span><span class="p">,</span>
          <span class="s2">&quot;person&quot;</span><span class="p">,</span> <span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;brother&quot;</span><span class="p">,</span> <span class="s2">&quot;sister&quot;</span><span class="p">]</span>
 
-<span class="n">lang</span> <span class="o">=</span> <span class="n">GensimLanguage</span><span class="p">(</span><span class="s2">&quot;wordvectors.kv&quot;</span><span class="p">)</span>
+<span class="n">lang</span> <span class="o">=</span> <span class="n">SpacyLanguage</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
 <span class="n">emb</span> <span class="o">=</span> <span class="n">lang</span><span class="p">[</span><span class="n">words</span><span class="p">]</span>
 <span class="n">emb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Ivis</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive_matrix</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-
-<h2 id="whatlies.transformers._ivis.Ivis.fit"><code class="highlight"><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.transformers._ivis.Ivis.fit" title="Permanent link">&para;</a></h2>
-<details class="note"><summary>Show source code in <code>transformers/_ivis.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>51
-52
-53
-54
-55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">):</span>
-        <span class="n">names</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">to_names_X</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tfm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span>
-</code></pre></div>
-</td></tr></table>
-
-</details>
-<p>Fit the transformer on the given <code>EmbeddingSet</code> instance (if neccessary). This method should
-set the <code>is_fitted</code> flag to <code>True</code>.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>embset</code></td>
-<td></td>
-<td>an <code>EmbeddingSet</code> instance used for fitting the transformer.</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="whatlies.transformers._ivis.Ivis.transform"><code class="highlight"><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span></code><a class="headerlink" href="#whatlies.transformers._ivis.Ivis.transform" title="Permanent link">&para;</a></h2>
-<details class="note"><summary>Show source code in <code>transformers/_ivis.py</code></summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>57
-58
-59
-60
-61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embset</span><span class="p">):</span>
-        <span class="n">names</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">to_names_X</span><span class="p">()</span>
-        <span class="n">new_vecs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tfm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">new_dict</span> <span class="o">=</span> <span class="n">new_embedding_dict</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">new_vecs</span><span class="p">,</span> <span class="n">embset</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">EmbeddingSet</span><span class="p">(</span><span class="n">new_dict</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">embset</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.ivis_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-
-</details>
-<p>Transform the given <code>EmbeddingSet</code> instance.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>embset</code></td>
-<td></td>
-<td>an <code>EmbeddingSet</code> instance to be transformed.</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
                 
                   
                 

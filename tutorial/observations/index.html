@@ -733,8 +733,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../api/language/universal_sentence/" title="Universal Sentence Encoder" class="md-nav__link">
-      Universal Sentence Encoder
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
+      USE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+      Sent TFM
     </a>
   </li>
 
@@ -856,9 +868,7 @@
                 
                 
                 <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.6.0"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.3.2"></script>
 
 <h1 id="observations">Observations<a class="headerlink" href="#observations" title="Permanent link">&para;</a></h1>
@@ -880,7 +890,6 @@ backends here.</p>
 <span class="n">lang_cv</span><span class="o">.</span><span class="n">fit_manual</span><span class="p">([</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pizzas&#39;</span><span class="p">,</span> <span class="s1">&#39;firehouse&#39;</span><span class="p">,</span> <span class="s1">&#39;firehydrant&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;pikachu&#39;</span><span class="p">,</span> <span class="s1">&#39;pokemon&#39;</span><span class="p">])</span>
 </code></pre></div>
-
 <p>Besides fetching a fasttext and spaCy model you'll notice that we're
 also manually fitting the <code>CountVectorLanguage</code>. Take a note
 of this because this fact will be meaningful later.</p>
@@ -896,7 +905,6 @@ of this because this fact will be meaningful later.</p>
 
 <span class="p">(</span><span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_spacy</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_fasttext</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_cv</span><span class="p">))</span>
 </code></pre></div>
-
 <div id="c1"></div>
 
 <script>
