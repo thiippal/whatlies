@@ -13,7 +13,7 @@
         <meta name="description" content="A python package to discover "what lies" in word embeddings.">
       
       
-        <link rel="canonical" href="https://rasahq.github.io/whatlies/">
+        <link rel="canonical" href="https://rasahq.github.io/whatlies/tutorial/quickstart/">
       
       
         <meta name="author" content="Vincent D. Warmerdam @ Rasa Research">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="images/fig.png">
+      <link rel="shortcut icon" href="../../images/fig.png">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
-        <title>whatlies</title>
+        <title>Quickstart - whatlies</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -66,10 +66,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="../../style.css">
     
     
       
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#whatlies" tabindex="0" class="md-skip">
+      <a href="#installation" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                Quickstart
               
             </span>
           
@@ -187,14 +187,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -206,7 +208,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="tutorial/quickstart/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           Getting Started
         </a>
       
@@ -219,7 +221,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="api/embedding/" class="md-tabs__link">
+        <a href="../../api/embedding/" class="md-tabs__link">
           API
         </a>
       
@@ -232,7 +234,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="examples/lipstick-pig/" class="md-tabs__link">
+        <a href="../../examples/lipstick-pig/" class="md-tabs__link">
           Examples
         </a>
       
@@ -291,111 +293,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
-      </label>
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#brief-introduction" class="md-nav__link">
-    Brief Introduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#produced" class="md-nav__link">
-    Produced
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-it-does" class="md-nav__link">
-    What it Does
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#similar-projects" class="md-nav__link">
-    Similar Projects
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#julia-bazinska-piotr-migdal-web-app" class="md-nav__link">
-    Julia Bazińska &amp; Piotr Migdal Web App
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tensorflow-projector" class="md-nav__link">
-    Tensorflow Projector
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parallax" class="md-nav__link">
-    Parallax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#local-development" class="md-nav__link">
-    Local Development
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -403,10 +305,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Getting Started
@@ -422,11 +326,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="tutorial/quickstart/" title="Quickstart" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Quickstart
+      </label>
+    
+    <a href="./" title="Quickstart" class="md-nav__link md-nav__link--active">
       Quickstart
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fetching-embeddings" class="md-nav__link">
+    Fetching Embeddings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisation" class="md-nav__link">
+    Visualisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compatibility" class="md-nav__link">
+    Compatibility
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -436,7 +392,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/embeddings/" title="What Are Embeddings" class="md-nav__link">
+    <a href="../embeddings/" title="What Are Embeddings" class="md-nav__link">
       What Are Embeddings
     </a>
   </li>
@@ -448,7 +404,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/embeddingsets/" title="Interactive Visualisation" class="md-nav__link">
+    <a href="../embeddingsets/" title="Interactive Visualisation" class="md-nav__link">
       Interactive Visualisation
     </a>
   </li>
@@ -460,7 +416,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/languages/" title="Language Options" class="md-nav__link">
+    <a href="../languages/" title="Language Options" class="md-nav__link">
       Language Options
     </a>
   </li>
@@ -472,7 +428,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/transformations/" title="Transformation Viz" class="md-nav__link">
+    <a href="../transformations/" title="Transformation Viz" class="md-nav__link">
       Transformation Viz
     </a>
   </li>
@@ -484,7 +440,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/scikit-learn/" title="Scikit-Learn Compatibility" class="md-nav__link">
+    <a href="../scikit-learn/" title="Scikit-Learn Compatibility" class="md-nav__link">
       Scikit-Learn Compatibility
     </a>
   </li>
@@ -496,7 +452,7 @@
 
 
   <li class="md-nav__item">
-    <a href="tutorial/observations/" title="Observations" class="md-nav__link">
+    <a href="../observations/" title="Observations" class="md-nav__link">
       Observations
     </a>
   </li>
@@ -508,7 +464,7 @@
 
 
   <li class="md-nav__item">
-    <a href="faq/" title="FAQ" class="md-nav__link">
+    <a href="../../faq/" title="FAQ" class="md-nav__link">
       FAQ
     </a>
   </li>
@@ -544,7 +500,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/embedding/" title="Embedding" class="md-nav__link">
+    <a href="../../api/embedding/" title="Embedding" class="md-nav__link">
       Embedding
     </a>
   </li>
@@ -556,7 +512,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/embeddingset/" title="EmbeddingSet" class="md-nav__link">
+    <a href="../../api/embeddingset/" title="EmbeddingSet" class="md-nav__link">
       EmbeddingSet
     </a>
   </li>
@@ -587,7 +543,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/pca/" title="Pca" class="md-nav__link">
+    <a href="../../api/transformers/pca/" title="Pca" class="md-nav__link">
       Pca
     </a>
   </li>
@@ -599,7 +555,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/umap/" title="Umap" class="md-nav__link">
+    <a href="../../api/transformers/umap/" title="Umap" class="md-nav__link">
       Umap
     </a>
   </li>
@@ -611,7 +567,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/tsne/" title="Tsne" class="md-nav__link">
+    <a href="../../api/transformers/tsne/" title="Tsne" class="md-nav__link">
       Tsne
     </a>
   </li>
@@ -623,7 +579,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/opentsne/" title="OpenTsne" class="md-nav__link">
+    <a href="../../api/transformers/opentsne/" title="OpenTsne" class="md-nav__link">
       OpenTsne
     </a>
   </li>
@@ -635,7 +591,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/noise/" title="Noise" class="md-nav__link">
+    <a href="../../api/transformers/noise/" title="Noise" class="md-nav__link">
       Noise
     </a>
   </li>
@@ -647,7 +603,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/addrandom/" title="Add Random" class="md-nav__link">
+    <a href="../../api/transformers/addrandom/" title="Add Random" class="md-nav__link">
       Add Random
     </a>
   </li>
@@ -659,7 +615,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/transformers/ivis/" title="Ivis" class="md-nav__link">
+    <a href="../../api/transformers/ivis/" title="Ivis" class="md-nav__link">
       Ivis
     </a>
   </li>
@@ -695,7 +651,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/spacy_lang/" title="spaCy" class="md-nav__link">
+    <a href="../../api/language/spacy_lang/" title="spaCy" class="md-nav__link">
       spaCy
     </a>
   </li>
@@ -707,7 +663,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/s2v_lang/" title="Sense2Vec" class="md-nav__link">
+    <a href="../../api/language/s2v_lang/" title="Sense2Vec" class="md-nav__link">
       Sense2Vec
     </a>
   </li>
@@ -719,7 +675,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/fasttext_lang/" title="fasttext" class="md-nav__link">
+    <a href="../../api/language/fasttext_lang/" title="fasttext" class="md-nav__link">
       fasttext
     </a>
   </li>
@@ -731,7 +687,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/countvector_lang/" title="CountVector" class="md-nav__link">
+    <a href="../../api/language/countvector_lang/" title="CountVector" class="md-nav__link">
       CountVector
     </a>
   </li>
@@ -743,7 +699,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/tfidf_lang/" title="TFIDFVector" class="md-nav__link">
+    <a href="../../api/language/tfidf_lang/" title="TFIDFVector" class="md-nav__link">
       TFIDFVector
     </a>
   </li>
@@ -755,7 +711,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/bpemb_lang/" title="BytePair" class="md-nav__link">
+    <a href="../../api/language/bpemb_lang/" title="BytePair" class="md-nav__link">
       BytePair
     </a>
   </li>
@@ -767,7 +723,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/convert_lang/" title="ConveRT" class="md-nav__link">
+    <a href="../../api/language/convert_lang/" title="ConveRT" class="md-nav__link">
       ConveRT
     </a>
   </li>
@@ -779,7 +735,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/gensim_lang/" title="Gensim" class="md-nav__link">
+    <a href="../../api/language/gensim_lang/" title="Gensim" class="md-nav__link">
       Gensim
     </a>
   </li>
@@ -791,7 +747,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/transformers/" title="Huggingface" class="md-nav__link">
+    <a href="../../api/language/transformers/" title="Huggingface" class="md-nav__link">
       Huggingface
     </a>
   </li>
@@ -803,7 +759,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/tfhub/" title="TFHub" class="md-nav__link">
+    <a href="../../api/language/tfhub/" title="TFHub" class="md-nav__link">
       TFHub
     </a>
   </li>
@@ -815,7 +771,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/universal_sentence/" title="USE" class="md-nav__link">
+    <a href="../../api/language/universal_sentence/" title="USE" class="md-nav__link">
       USE
     </a>
   </li>
@@ -827,7 +783,7 @@
 
 
   <li class="md-nav__item">
-    <a href="api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
+    <a href="../../api/language/sentence_tfm/" title="Sent TFM" class="md-nav__link">
       Sent TFM
     </a>
   </li>
@@ -868,7 +824,7 @@
 
 
   <li class="md-nav__item">
-    <a href="examples/lipstick-pig/" title="Debiasing Projections" class="md-nav__link">
+    <a href="../../examples/lipstick-pig/" title="Debiasing Projections" class="md-nav__link">
       Debiasing Projections
     </a>
   </li>
@@ -885,7 +841,7 @@
 
 
   <li class="md-nav__item">
-    <a href="roadmap/" title="Roadmap" class="md-nav__link">
+    <a href="../../roadmap/" title="Roadmap" class="md-nav__link">
       Roadmap
     </a>
   </li>
@@ -897,7 +853,7 @@
 
 
   <li class="md-nav__item">
-    <a href="releases/" title="Releases" class="md-nav__link">
+    <a href="../../releases/" title="Releases" class="md-nav__link">
       Releases
     </a>
   </li>
@@ -924,70 +880,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#brief-introduction" class="md-nav__link">
-    Brief Introduction
+  <a href="#fetching-embeddings" class="md-nav__link">
+    Fetching Embeddings
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#produced" class="md-nav__link">
-    Produced
+  <a href="#visualisation" class="md-nav__link">
+    Visualisation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-it-does" class="md-nav__link">
-    What it Does
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#similar-projects" class="md-nav__link">
-    Similar Projects
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#julia-bazinska-piotr-migdal-web-app" class="md-nav__link">
-    Julia Bazińska &amp; Piotr Migdal Web App
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tensorflow-projector" class="md-nav__link">
-    Tensorflow Projector
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parallax" class="md-nav__link">
-    Parallax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#local-development" class="md-nav__link">
-    Local Development
+  <a href="#compatibility" class="md-nav__link">
+    Compatibility
   </a>
   
 </li>
@@ -1008,103 +916,106 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/tutorial/quickstart/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="whatlies">WhatLies<a class="headerlink" href="#whatlies" title="Permanent link">&para;</a></h1>
-<p><img src="logo.png"></p>
-<p>A library that tries help you to understand. "What lies in word embeddings?"</p>
-<h2 id="brief-introduction">Brief Introduction<a class="headerlink" href="#brief-introduction" title="Permanent link">&para;</a></h2>
-<p>If you prefer a video tutorial before reading the getting started guide watch this;</p>
-<iframe width="100%" height=450 src="https://www.youtube-nocookie.com/embed/FwkwC7IJWO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<h2 id="produced">Produced<a class="headerlink" href="#produced" title="Permanent link">&para;</a></h2>
-<p><img src="square-logo.svg" width=150 height=150 align="right"></p>
-<p>This project was initiated at <a href="https://rasa.com">Rasa</a> as a fun side project
-that supports the research and developer advocacy teams at Rasa.</p>
-<p>It is maintained by Vincent D. Warmerdam, Research Advocate at Rasa.</p>
-<h2 id="what-it-does">What it Does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
-<p>This small library offers tools to make visualisation easier of both
-word embeddings as well as operations on them. This should be considered
-an experimental project.</p>
-<p>This library will allow you to make visualisations of transformations
-of word embeddings. Some of these transformations are linear algebra
-operators.</p>
-<script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
+                <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.6.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.3.2"></script>
 
-<p><small>Note that these charts are fully interactive. Click. Drag. Zoom in. Zoom out.</small></p>
-<div id="vis1"></div>
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<p>Whatlies is a library that tries to make it easy for you to play around with
+text embeddings. To quickly get started with it, you can install via pip;</p>
+<div class="highlight"><pre><span></span><code>python -m pip install whatlies
+</code></pre></div>
+<h2 id="fetching-embeddings">Fetching Embeddings<a class="headerlink" href="#fetching-embeddings" title="Permanent link">&para;</a></h2>
+<p>To fetch embeddings from a language backend you will first need to import a backend.
+We'll use <a href="https://www.youtube.com/watch?v=-0IjF-7OB3s&amp;ab_channel=Rasa">byte pair embeddings</a> now.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">BytePairLanguage</span>
 
-<p>But we also support other operations. Like <strong>pca</strong>  and <strong>umap</strong>;</p>
-<p><small>Just like before. Click. Drag. Zoom in. Zoom out.</small></p>
-<div id="vis2"></div>
+<span class="n">bp_lang</span> <span class="o">=</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>You can use this language backend to fetch an embedding of a single word.</p>
+<div class="highlight"><pre><span></span><code><span class="n">emb_king</span> <span class="o">=</span> <span class="n">bp_lang</span><span class="p">[</span><span class="s2">&quot;king&quot;</span><span class="p">]</span>
+<span class="n">emb_king</span><span class="o">.</span><span class="n">vector</span>
+</code></pre></div>
+<p>This is a single embedding, but you can also fetch many embeddings at the same time.</p>
+<div class="highlight"><pre><span></span><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">,</span> <span class="s1">&#39;woman&#39;</span><span class="p">,</span> <span class="s1">&#39;king&#39;</span><span class="p">,</span> <span class="s1">&#39;queen&#39;</span><span class="p">,</span> <span class="s1">&#39;brother&#39;</span><span class="p">,</span> <span class="s1">&#39;sister&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;lion&#39;</span><span class="p">,</span> <span class="s1">&#39;puppy&#39;</span><span class="p">,</span> <span class="s1">&#39;male student&#39;</span><span class="p">,</span> <span class="s1">&#39;female student&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;university&#39;</span><span class="p">,</span> <span class="s1">&#39;school&#39;</span><span class="p">,</span> <span class="s1">&#39;kitten&#39;</span><span class="p">]</span>
 
-<script src="interactive1.js"></script>
-<script src="interactive2.js"></script>
+<span class="n">embset</span> <span class="o">=</span> <span class="n">bp_lang</span><span class="p">[</span><span class="n">words</span><span class="p">]</span>
+</code></pre></div>
+<p>This embeddingset is a collection of embeddings. Where a dataframe is a container for
+tabular data, this embeddingset is a container for a set of embeddings. This container
+has many utility methods implemented. You can for example turn it into a numpy array.</p>
+<div class="highlight"><pre><span></span><code><span class="n">embset</span><span class="o">.</span><span class="n">to_X</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="visualisation">Visualisation<a class="headerlink" href="#visualisation" title="Permanent link">&para;</a></h2>
+<p>But you can also use it for visualisation.</p>
+<div class="highlight"><pre><span></span><code><span class="n">embset</span><span class="o">.</span><span class="n">plot_similarity</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;cosine&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="similarity-guide.png" /></p>
+<p>There are many visualisations implemented. In particular we offer interactive altair charts.
+These can be useful to show how points are clustered. Before plotting this, it might be common
+to apply a dimensionality reduction technique first.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Pca</span><span class="p">,</span> <span class="n">Umap</span>
 
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>You can install the package via pip;</p>
-<pre><code class="language-bash">pip install whatlies
-</code></pre>
-<p>This will install the base dependencies. Depending on the
-transformers and language backends that you'll be using you
-may want to install more. Here's all the possible installation
-settings you could go for.</p>
-<pre><code class="language-bash">pip install whatlies[base]
-pip install whatlies[tfhub]
-pip install whatlies[transformers]
-pip install whatlies[ivis]
-pip install whatlies[opentsne]
-pip install whatlies[sense2vec]
-</code></pre>
-<p>If you want it all you can also install via;</p>
-<pre><code class="language-bash">pip install whatlies[all]
-</code></pre>
-<p>Note that this will install dependencies but it
-<strong>will not</strong> install all the language models you might
-want to visualise. For example, you might still
-need to manually download spaCy models if you intend
-to use that backend.</p>
-<h2 id="similar-projects">Similar Projects<a class="headerlink" href="#similar-projects" title="Permanent link">&para;</a></h2>
-<p>There are some projects out there who are working on similar tools and we figured it fair to mention and compare them here.</p>
-<h5 id="julia-bazinska-piotr-migdal-web-app">Julia Bazińska &amp; Piotr Migdal Web App<a class="headerlink" href="#julia-bazinska-piotr-migdal-web-app" title="Permanent link">&para;</a></h5>
-<p>The original inspiration for this project came from <a href="https://lamyiowce.github.io/word2viz/">this web app</a> and <a href="https://www.youtube.com/watch?v=AGgCqpouKSs">this pydata talk</a>. It is a web app that takes a while to load
-but it is really fun to play with. The goal of this project is to make it
-easier to make similar charts from jupyter using different language backends.</p>
-<h5 id="tensorflow-projector">Tensorflow Projector<a class="headerlink" href="#tensorflow-projector" title="Permanent link">&para;</a></h5>
-<p>From google there's the <a href="https://projector.tensorflow.org/">tensorflow projector project</a>. It offers
-highly interactive 3d visualisations as well as some transformations via tensorboard.</p>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Pca</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">embset</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Umap</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;umap&quot;</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">|</span> <span class="n">p2</span>
+</code></pre></div>
+<div id="vis"></div>
+
+<script>
+fetch('chart.json')
+.then(res => res.json())
+.then((out) => {
+  vegaEmbed('#vis', out);
+})
+.catch(err => { throw err });
+</script>
+
+<p>These charts are fully interactive. You can zoom and drag with your cursor.</p>
+<h2 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h2>
+<p>The goal of this project is to make more projects compatible with each-other. We offer support
+for:</p>
 <ul>
-<li>The tensorflow projector will create projections in tensorboard, which you can also load
-into jupyter notebook but whatlies makes visualisations directly.</li>
-<li>The tensorflow projector supports interactive 3d visuals, which whatlies currently doesn't.</li>
-<li>Whatlies offers lego bricks that you can chain together to get a visualisation started. This
-also means that you're more flexible when it comes to transforming data before visualising it.</li>
+<li><a href="https://spacy.io/">spaCy</a></li>
+<li><a href="https://huggingface.co/">huggingface</a>,</li>
+<li><a href="https://www.tensorflow.org/hub">tensorflow hub</a></li>
+<li><a href="https://radimrehurek.com/gensim/">gensim</a></li>
+<li><a href="https://nlp.h-its.org/bpemb/">bytepair</a></li>
+<li><a href="https://fasttext.cc/">fasttext</a>.</li>
 </ul>
-<h5 id="parallax">Parallax<a class="headerlink" href="#parallax" title="Permanent link">&para;</a></h5>
-<p>From Uber AI Labs there's <a href="https://github.com/uber-research/parallax">parallax</a> which is described
-in a paper <a href="https://arxiv.org/abs/1905.12099">here</a>. There's a common mindset in the two tools;
-the goal is to use arbitrary user defined projections to understand embedding spaces better.
-That said, some differences that are worth to mention.</p>
-<ul>
-<li>It relies on bokeh as a visualisation backend and offers a lot of visualisation types
-(like radar plots). Whatlies uses altair and tries to stick to simple scatter charts.
-Altair can export interactive html/svg but it will not scale as well if you've drawing
-many points at the same time.</li>
-<li>Parallax is meant to be run as a stand-alone app from the command line while Whatlies is
-meant to be run from the jupyter notebook.</li>
-<li>Parallax gives a full user interface while Whatlies offers lego bricks that you can chain
-together to get a visualisation started.</li>
-<li>Whatlies relies on language backends (like spaCy, huggingface) to fetch word embeddings.
-Parallax allows you to instead fetch raw files on disk.</li>
-<li>Parallax has been around for a while, Whatlies is more new and therefore more experimental.</li>
-</ul>
-<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h2>
-<p>If you want to develop locally you can start by running this command after cloning.</p>
-<pre><code class="language-bash">make develop
-</code></pre>
+<p>Note that you're not just limited to word embeddings, our API deals with text in general and
+can also fetch embeddings for contextualized language models.</p>
+<p>We also do our best to be compatible with popular tools like scikit-learn. Since we standardise
+the output of our language backends we can give a familiar API to scikit-learn pipelines too.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">BytePairLanguage</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;embed&quot;</span><span class="p">,</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;en&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;i really like this post&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thanks for that comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;i enjoy this friendly forum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;this is a bad post&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;i dislike this article&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;this is not well written&quot;</span>
+<span class="p">]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+<p>We hope this tools makes it easier for you to explore word-embeddings.</p>
                 
                   
                 
@@ -1126,14 +1037,28 @@ Parallax allows you to instead fetch raw files on disk.</li>
       <div class="md-footer-nav">
         <nav class="md-footer-nav__inner md-grid">
           
+            <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  Home
+                </span>
+              </div>
+            </a>
           
-            <a href="tutorial/quickstart/" title="Quickstart" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          
+            <a href="../embeddings/" title="What Are Embeddings" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span class="md-footer-nav__direction">
                     Next
                   </span>
-                  Quickstart
+                  What Are Embeddings
                 </span>
               </div>
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -1166,11 +1091,11 @@ Parallax allows you to instead fetch raw files on disk.</li>
       
     </div>
     
-      <script src="assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
       
-        <script src="js/config.js"></script>
+        <script src="../../js/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
