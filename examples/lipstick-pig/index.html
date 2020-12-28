@@ -1044,7 +1044,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/examples/lipstick-pig.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/examples/lipstick-pig/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                   <h1>Debiasing Projections</h1>
@@ -1118,7 +1118,7 @@ by Hila Gonen and Yoav Goldberg.</p>
 <span class="n">make_correlation_plot</span><span class="p">(</span><span class="n">pairs</span><span class="o">=</span><span class="n">all_pairs</span><span class="p">,</span> <span class="n">language_model</span><span class="o">=</span><span class="n">lang_ft</span><span class="p">)</span>
 </code></pre></div>
 <p>This code generates a similarity chart for fasttext embeddings, shown below.</p>
-<p><img alt="" src="../imgs/bias.png" /></p>
+<p><img alt="" src="imgs/bias.png" /></p>
 <p>Notice, that we indeed see correlation. The "gender" direction seems to correlate with the "doctor-nurse" direction. We'd prefer if it simply were zero.</p>
 <h2 id="projections">Projections<a class="headerlink" href="#projections" title="Permanent link">&para;</a></h2>
 <p>We observe bias that we do not want to have. So it's natural to ask: can we remove it?</p>
@@ -1144,7 +1144,7 @@ by Hila Gonen and Yoav Goldberg.</p>
 </code></pre></div>
 </details>
 
-<p><img alt="" src="../imgs/logo.png" /></p>
+<p><img alt="" src="imgs/logo.png" /></p>
 <p>In this example you can see that if we project <span class="arithmatex">\(v_{man}\)</span> away from the <span class="arithmatex">\(v_{queen} - v_{king}\)</span> axis we get a new vector <span class="arithmatex">\(v_{man} | (v_{queen} - v_{king})\)</span>.</p>
 <p>The 2D example also demonstrates that we might achieve:</p>
 <div class="arithmatex">\[v_{man} | (v_{queen} - v_{king}) \approx v_{woman} | (v_{queen} - v_{king})\]</div>
@@ -1171,11 +1171,11 @@ by Hila Gonen and Yoav Goldberg.</p>
 <span class="n">make_debias_correlation_plot</span><span class="p">(</span><span class="n">pairs</span><span class="o">=</span><span class="n">all_pairs</span><span class="p">,</span> <span class="n">language_model</span><span class="o">=</span><span class="n">lang_ft</span><span class="p">)</span>
 </code></pre></div>
 <p>We'll now display the "before" as well as "after" chart.</p>
-<p><img alt="" src="../imgs/before-after.png" /></p>
+<p><img alt="" src="imgs/before-after.png" /></p>
 <p>It's not a perfect removal of the similarity. But we can confirm that at least visually, it seems "less".</p>
 <h2 id="across-languages">Across Languages<a class="headerlink" href="#across-languages" title="Permanent link">&para;</a></h2>
 <p>One benefit of this library is that it is fairly easy to repeat this exercise for different language backends. Just replace the <code>language_model</code> with a different backend. Here's the results for three backends; a large English spaCy model, FastText and a large English BytePair model.</p>
-<p><img alt="" src="../imgs/many.png" /></p>
+<p><img alt="" src="imgs/many.png" /></p>
 <h2 id="relative-distances">Relative Distances<a class="headerlink" href="#relative-distances" title="Permanent link">&para;</a></h2>
 <p>The results look promising but we need to be very careful here. We're able to
 show that on one bias-metric we're performing better now. But we should not
@@ -1183,7 +1183,7 @@ assume that this solves all issues related to gender in word embeddings.
 To demonstrate why, let's try and use a debiased space to predict gender using
 standard algorithms in scikit-learn.</p>
 <p>As a data source we'll take two gendered word-lists. You can download the same
-word-lists <a href="../data/female-words.txt">here</a> and <a href="../data/male-words.txt">here</a>. These
+word-lists <a href="data/female-words.txt">here</a> and <a href="data/male-words.txt">here</a>. These
 wordlists are subsets of the wordlists used in the
 <a href="https://arxiv.org/abs/1809.01496">Learning Gender - Neutral Word Embeddings</a> paper.
 The original, and larger, datasets can be found <a href="https://github.com/uclanlp/gn_glove/tree/master/wordlist">here</a>.</p>
@@ -1220,7 +1220,7 @@ You can read more on this feature <a href="https://rasahq.github.io/whatlies/tut
 <p>This pipeline can now be used to make predictions. Currently we do not perform any debiasing,
 so let's have a look at how well we can predict gender now.</p>
 <h3 id="method-i-biased-embedding-biased-model">Method I: Biased Embedding, Biased Model<a class="headerlink" href="#method-i-biased-embedding-biased-model" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="../imgs/bias-bias-pipeline.png" /></p>
+<p><img alt="" src="imgs/bias-bias-pipeline.png" /></p>
 <p>The code below runs the schematic drawn above.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
@@ -1248,7 +1248,7 @@ accuracy on our test set.</p>
 <h3 id="method-ii-unbiased-embedding-biased-model">Method II: UnBiased Embedding, Biased Model<a class="headerlink" href="#method-ii-unbiased-embedding-biased-model" title="Permanent link">&para;</a></h3>
 <p>If we now apply debiasing on the vectors then one might expect the old model
 to no longer be able to predict the gender.</p>
-<p><img alt="" src="../imgs/bias-debias-pipeline.png" /></p>
+<p><img alt="" src="imgs/bias-debias-pipeline.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">emb_debias</span><span class="o">.</span><span class="n">to_X_y</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
                                                     <span class="n">train_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
@@ -1274,7 +1274,7 @@ technique.</p>
 <h3 id="method-iii-unbiased-embedding-unbiased-model">Method III: UnBiased Embedding, UnBiased Model<a class="headerlink" href="#method-iii-unbiased-embedding-unbiased-model" title="Permanent link">&para;</a></h3>
 <p>We can also try to create a model that is both trained and applied on
 the unbiased vectors.</p>
-<p><img alt="" src="../imgs/debias-debias-pipeline.png" /></p>
+<p><img alt="" src="imgs/debias-debias-pipeline.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
