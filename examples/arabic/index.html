@@ -1031,7 +1031,7 @@ Umap.</p>
 
 <span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Umap</span>
 
-<span class="c1">## Read in the dataframes from Kaggle</span>
+<span class="c1"># Read in the dataframes from Kaggle</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_negative_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">),</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_positive_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1039,7 +1039,7 @@ Umap.</p>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span>
 
 
-<span class="c1">## Sample a small list such that the interactive charts render swiftly.</span>
+<span class="c1"># Sample a small list such that the interactive charts render swiftly.</span>
 <span class="n">small_text_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[:</span><span class="mi">1000</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]))</span>
 
 <span class="k">def</span> <span class="nf">mk_plot</span><span class="p">(</span><span class="n">lang</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
@@ -1075,14 +1075,14 @@ how you might quickly prototype a solution using whatlies.</p>
 
 <span class="kn">from</span> <span class="nn">memo</span> <span class="kn">import</span> <span class="n">grid</span><span class="p">,</span> <span class="n">memfile</span><span class="p">,</span> <span class="n">time_taken</span>
 
-<span class="c1">## Split dataframe into a train/test set.</span>
+<span class="c1"># Split dataframe into a train/test set.</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]),</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
     <span class="n">test_size</span><span class="o">=</span><span class="mi">1000</span>
 <span class="p">)</span>
 
-<span class="c1">## Create a dictionary with all of our embedding settings.</span>
+<span class="c1"># Create a dictionary with all of our embedding settings.</span>
 <span class="n">embedders</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;nada&#39;</span><span class="p">:</span> <span class="s1">&#39;drop&#39;</span><span class="p">,</span>
     <span class="s1">&#39;bp1&#39;</span><span class="p">:</span> <span class="n">lang_bp1</span><span class="p">,</span>
@@ -1093,28 +1093,28 @@ how you might quickly prototype a solution using whatlies.</p>
 <span class="nd">@memfile</span><span class="p">(</span><span class="s2">&quot;arabic-sentences-benchmark.jsonl&quot;</span><span class="p">)</span>
 <span class="nd">@time_taken</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">embedder</span><span class="o">=</span><span class="s2">&quot;nada&quot;</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngram</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="c1">## This featurizers step is a list that is used in a scikit-learn pipeline.</span>
+    <span class="c1"># This featurizers step is a list that is used in a scikit-learn pipeline.</span>
     <span class="n">featurizers</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;cv-base&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span>
         <span class="p">(</span><span class="s1">&#39;cv-ngram&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">if</span> <span class="n">ngram</span> <span class="k">else</span> <span class="s1">&#39;drop&#39;</span><span class="p">),</span>
         <span class="p">(</span><span class="s1">&#39;emb&#39;</span><span class="p">,</span> <span class="n">embedders</span><span class="p">[</span><span class="n">embedder</span><span class="p">])</span>
     <span class="p">]</span>
 
-    <span class="c1">## After featurization we apply a Logistic Regression</span>
+    <span class="c1"># After featurization we apply a Logistic Regression</span>
     <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
         <span class="p">(</span><span class="s2">&quot;feat&quot;</span><span class="p">,</span> <span class="n">FeatureUnion</span><span class="p">(</span><span class="n">featurizers</span><span class="p">)),</span>
         <span class="p">(</span><span class="s2">&quot;mod&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">smooth</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">))</span>
     <span class="p">])</span>
 
-    <span class="c1">## The trained pipeline is used to make a prediction.</span>
+    <span class="c1"># The trained pipeline is used to make a prediction.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">train_size</span><span class="p">])</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-    <span class="c1">## By returning a dictionary `memo` will be able to properly log this.</span>
+    <span class="c1"># By returning a dictionary `memo` will be able to properly log this.</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;valid_accuracy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">)),</span>
             <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))}</span>
 
-<span class="c1">## The grid will loop over all the options and generate a progress bar</span>
-<span class="c1">## that means it&#39;s easy to run from the command line in the background.</span>
+<span class="c1"># The grid will loop over all the options and generate a progress bar</span>
+<span class="c1"># that means it&#39;s easy to run from the command line in the background.</span>
 <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">(</span><span class="n">embedder</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;nada&#39;</span><span class="p">,</span> <span class="s1">&#39;bp1&#39;</span><span class="p">,</span> <span class="s1">&#39;bp2&#39;</span><span class="p">,</span> <span class="s1">&#39;hf&#39;</span><span class="p">],</span>
                     <span class="n">smooth</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
                     <span class="n">ngram</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
