@@ -13,7 +13,7 @@
         <meta name="description" content="A python package to discover "what lies" in word embeddings.">
       
       
-        <link rel="canonical" href="https://rasahq.github.io/whatlies/examples/benchmarking-arabic/">
+        <link rel="canonical" href="https://rasahq.github.io/whatlies/examples/arabic/">
       
       
         <meta name="author" content="Vincent D. Warmerdam @ Rasa Research">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Benchmarking arabic - whatlies</title>
+        <title>Arabic Benchmarks - whatlies</title>
       
     
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Benchmarking arabic
+                Arabic Benchmarks
               
             </span>
           
@@ -187,14 +187,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -232,7 +234,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../lipstick-pig/" class="md-tabs__link">
+        <a href="../lipstick-pig/" class="md-tabs__link md-tabs__link--active">
           Examples
         </a>
       
@@ -759,10 +761,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       Examples
@@ -783,6 +787,27 @@
     <a href="../lipstick-pig/" title="Debiasing Projections" class="md-nav__link">
       Debiasing Projections
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Arabic Benchmarks" class="md-nav__link md-nav__link--active">
+      Arabic Benchmarks
+    </a>
+    
   </li>
 
         
@@ -829,29 +854,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#finding-embeddings" class="md-nav__link">
-    Finding Embeddings
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-task" class="md-nav__link">
-    The task
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
   
 </nav>
                   </div>
@@ -863,14 +867,15 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/examples/benchmarking-arabic.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/RasaHQ/whatlies/edit/master/docs/examples/arabic/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Benchmarking arabic</h1>
-                
-                <p>One of the goals of this package is to make it simple to quickly
-benchmark the effect of embeddings. This includes embeddings that
-are Non-English. In this guide we'll demonstrate how you might be
+                <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.6.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.3.2"></script>
+
+<p>One of the goals of this package is to make it simple to explore embeddings.
+This includes embeddings that are Non-English. In this guide we'll demonstrate how you might be
 able to use this library to run simple Arabic classification benchmark
 using scikit-learn and this library.</p>
 <h2 id="finding-embeddings">Finding Embeddings<a class="headerlink" href="#finding-embeddings" title="Permanent link">&para;</a></h2>
@@ -881,26 +886,33 @@ embeddings and pretrained <a href="https://github.com/alisafaya/Arabic-BERT">BER
 embeddings available via <a href="https://github.com/bakrianoo/aravec">AraVec</a> and
 there's also pretrained subword-embeddings in <a href="https://fasttext.cc/docs/en/crawl-vectors.html#models">fasttext</a>.
 There's also support for the Egyptian dialect but we'll ignore these for now.</p>
-<h2 id="the-task">The task<a class="headerlink" href="#the-task" title="Permanent link">&para;</a></h2>
+<h2 id="the-task">The Task<a class="headerlink" href="#the-task" title="Permanent link">&para;</a></h2>
 <p>The task we'll benchmark is sentiment analysis for
 <a href="https://www.kaggle.com/mksaad/arabic-sentiment-twitter-corpus">arabic tweets</a>. This benchmark
-was part of discussion on <a href="https://github.com/RasaHQ/whatlies/issues/262">github</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-
-<span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">BytePairLanguage</span><span class="p">,</span> <span class="n">HFTransformersLanguage</span>
-<span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Umap</span>
+was part of discussion on <a href="https://github.com/RasaHQ/whatlies/issues/262">github</a>. We'll explore
+the following benchmarks.</p>
+<h2 id="explore">Explore<a class="headerlink" href="#explore" title="Permanent link">&para;</a></h2>
+<p>To start exploring the embeddings, we'll first need to load them.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">BytePairLanguage</span><span class="p">,</span> <span class="n">HFTransformersLanguage</span>
 
 <span class="n">lang_bp1</span> <span class="o">=</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;ar&quot;</span><span class="p">,</span> <span class="n">vs</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">lang_bp2</span> <span class="o">=</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;ar&quot;</span><span class="p">,</span> <span class="n">vs</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">lang_hf</span> <span class="o">=</span> <span class="n">HFTransformersLanguage</span><span class="p">(</span><span class="s2">&quot;asafaya/bert-base-arabic&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Let's first make a visualisation that helps us explore the embeddings. We'll
+look at a few examples by embedding them and reducing their dimensionality via
+Umap.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Umap</span>
+
+<span class="c1"># Read in the dataframes from Kaggle</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_negative_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]),</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_positive_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">])</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_negative_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test_Arabic_tweets_positive_20190413.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span>
+
 
 <span class="c1"># Sample a small list such that the interactive charts render swiftly.</span>
 <span class="n">small_text_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[:</span><span class="mi">1000</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]))</span>
@@ -911,8 +923,143 @@ was part of discussion on <a href="https://github.com/RasaHQ/whatlies/issues/262
             <span class="o">.</span><span class="n">plot_interactive</span><span class="p">(</span><span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
 
-<span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_bp1</span><span class="p">,</span> <span class="s2">&quot;bp_small&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_bp2</span><span class="p">,</span> <span class="s2">&quot;bp_big&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_hf</span><span class="p">,</span> <span class="s2">&quot;huggingface&quot;</span><span class="p">)</span>
+<span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_bp2</span><span class="p">,</span> <span class="s2">&quot;bp_big&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_hf</span><span class="p">,</span> <span class="s2">&quot;huggingface&quot;</span><span class="p">)</span>
 </code></pre></div>
+<div id="vis1"></div>
+
+<script>
+fetch('charts.json')
+.then(res => res.json())
+.then((out) => {
+  vegaEmbed('#vis1', out);
+})
+.catch(err => { throw err });
+</script>
+
+<p>You might recognize some clusters, which is nice, but it's no benchmark yet.</p>
+<h2 id="benchmark">Benchmark<a class="headerlink" href="#benchmark" title="Permanent link">&para;</a></h2>
+<p>The code below will actually run the actual benchmark. What's important to note is that
+we'll train on 7829 examples and we'll test on a holdout set of 1000 examples. In the
+interest of time we won't do a k-fold validation. After all, the main goal is to show
+how you might quickly prototype a solution using whatlies.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">FeatureUnion</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">memo</span> <span class="kn">import</span> <span class="n">grid</span><span class="p">,</span> <span class="n">memfile</span><span class="p">,</span> <span class="n">time_taken</span>
+
+<span class="c1"># Split dataframe into a train/test set.</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]),</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a dictionary with all of our embedding settings.</span>
+<span class="n">embedders</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nada&#39;</span><span class="p">:</span> <span class="s1">&#39;drop&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bp1&#39;</span><span class="p">:</span> <span class="n">lang_bp1</span><span class="p">,</span>
+    <span class="s1">&#39;bp2&#39;</span><span class="p">:</span> <span class="n">lang_bp2</span><span class="p">,</span>
+    <span class="s1">&#39;hf&#39;</span><span class="p">:</span> <span class="n">lang_hf</span>
+<span class="p">}</span>
+
+<span class="nd">@memfile</span><span class="p">(</span><span class="s2">&quot;arabic-sentences-benchmark.jsonl&quot;</span><span class="p">)</span>
+<span class="nd">@time_taken</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">embedder</span><span class="o">=</span><span class="s2">&quot;nada&quot;</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngram</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># This featurizers step is a list that is used in a scikit-learn pipeline.</span>
+    <span class="n">featurizers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;cv-base&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s1">&#39;cv-ngram&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="k">if</span> <span class="n">ngram</span> <span class="k">else</span> <span class="s1">&#39;drop&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;emb&#39;</span><span class="p">,</span> <span class="n">embedders</span><span class="p">[</span><span class="n">embedder</span><span class="p">])</span>
+    <span class="p">]</span>
+
+    <span class="c1"># After featurization we apply a Logistic Regression</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s2">&quot;feat&quot;</span><span class="p">,</span> <span class="n">FeatureUnion</span><span class="p">(</span><span class="n">featurizers</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;mod&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">smooth</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">))</span>
+    <span class="p">])</span>
+
+    <span class="c1"># The trained pipeline is used to make a prediction.</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="n">train_size</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">train_size</span><span class="p">])</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># By returning a dictionary `memo` will be able to properly log this.</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;valid_accuracy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">)),</span>
+            <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))}</span>
+
+<span class="c1"># The grid will loop over all the options and generate a progress bar</span>
+<span class="c1"># that means it&#39;s easy to run from the command line in the background.</span>
+<span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">(</span><span class="n">embedder</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;nada&#39;</span><span class="p">,</span> <span class="s1">&#39;bp1&#39;</span><span class="p">,</span> <span class="s1">&#39;bp2&#39;</span><span class="p">,</span> <span class="s1">&#39;hf&#39;</span><span class="p">],</span>
+                    <span class="n">smooth</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+                    <span class="n">ngram</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+                    <span class="n">train_size</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span>
+                                <span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">]):</span>
+    <span class="n">run_experiment</span><span class="p">(</span><span class="o">**</span><span class="n">setting</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+</code></pre></div>
+<p>There's a few things to observe.</p>
+<ol>
+<li>We're using <a href="https://koaning.github.io/memo/">memo</a> to handle the logging. The <code>memfile</code> decorator grabs
+app the keyword arguments and logs it together with the dictionary output.</li>
+<li>We're first embedding the text numerically, after which we apply a logistic regression. A logistic regression
+won't give us an upper limit of what we might be able to achieve after fine-tuning but it should serve
+as a reasonable lower bound of what we could expect.</li>
+<li>Besides testing the effect of the embedding we'll also have a look at the effect of training set size (<code>train_size</code>),
+parameter smoothing (<code>smooth</code>) on the logistic regression and the effect of adding subword countvectors (<code>ngram</code>).</li>
+</ol>
+<h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h1>
+<p>You can play with the full dataset by exploring the parallel coordinates chart
+in a seperate tab <a href="hiplot-results.html">here</a> but we'll focus on the most important
+observations below.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>It seems that smoothing and adding countvectors for the subwords doesn't contribute
+the most substantial predictive power. They can be tuned to add that 1% extra boost
+but the most substaintial gain in validation accuracy is contributed by a large
+training set and by chosing the huggingface embeddings.</p>
+<p>Feel free to play around with the charts below, they are fully interactive.</p>
+<div id="vis2"></div>
+
+<script>
+fetch('details-1.json')
+.then(res => res.json())
+.then((out) => {
+  vegaEmbed('#vis2', out);
+})
+.catch(err => { throw err });
+</script>
+
+<p>The huggingface embeddings do come with a downside however.</p>
+<div id="vis3"></div>
+
+<script>
+fetch('details-2.json')
+.then(res => res.json())
+.then((out) => {
+  vegaEmbed('#vis3', out);
+})
+.catch(err => { throw err });
+</script>
+
+<p>The huggingface embeddings are <em>much</em> slower. Notice the log-scale on the y-axis. These
+results ran on a modern laptop and it can take up to 8 minutes to train/process only 8000
+datapoints. This pales in comparison to the other approaches. That said, we're rapid prototyping
+here so we should keep in mind that we might be able to the compute time down if we build directly
+on top of hugginface.</p>
+<p>We also see that the train performance keeps increasing while the test performance
+starts to flatten. If we were to increase the train set further we might need to keep
+beware of overfitting.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Maybe the huggingface results look promising, maybe the compute time is a concern for you or
+maybe you've got a use-case where you need even more predictive power. Either way, we hope you
+see the potential for this library when it comes to rapid prototyping. The goal here wasn't to
+be "state of the art". Rather; whatlies allows you to try out a whole bunch of embeddings relatively
+quickly so you don't need to worry about integrating with all sorts of embedding backends.</p>
+<p>If you're curious about extending this benchmark; feel absolutely free! You might want to try
+out the <code>LaBSELanguage</code>. It's a multi-language model that should support 100+ languages. We'd also
+love to hear if there's useful tricks we're missing out on. We're especially keen to hear if there's
+tools missing for Non-English language.</p>
+<p>If you're interested in running this notebook yourself, you can download it <a href="arabic-tweets-exercise.ipynb">here</a>.</p>
                 
                   
                 
@@ -930,6 +1077,41 @@ was part of discussion on <a href="https://github.com/RasaHQ/whatlies/issues/262
       
         
   <footer class="md-footer">
+    
+      <div class="md-footer-nav">
+        <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../lipstick-pig/" title="Debiasing Projections" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  Debiasing Projections
+                </span>
+              </div>
+            </a>
+          
+          
+            <a href="../../roadmap/" title="Roadmap" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Next
+                  </span>
+                  Roadmap
+                </span>
+              </div>
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+              </div>
+            </a>
+          
+        </nav>
+      </div>
     
     <div class="md-footer-meta md-typeset">
       <div class="md-footer-meta__inner md-grid">

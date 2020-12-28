@@ -801,6 +801,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/arabic/" title="Arabic Benchmarks" class="md-nav__link">
+      Arabic Benchmarks
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -876,12 +888,17 @@ pip install whatlies[all]
 </code></pre></div>
 </div>
 <p><strong>Usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">LaBSELanguage</span>
-<span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">LaBSELanguage</span><span class="p">()</span>
-<span class="o">&gt;</span> <span class="n">lang</span><span class="p">[</span><span class="s1">&#39;today is a nice day&#39;</span><span class="p">]</span>
-<span class="o">&gt;</span> <span class="n">lang</span> <span class="o">=</span> <span class="n">LaBSELanguage</span><span class="p">()</span>
-<span class="o">&gt;</span> <span class="n">lang</span><span class="p">[[</span><span class="s1">&#39;i like cats and dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;ik vind honden en katten leuk&#39;</span><span class="p">,</span> <span class="s1">&#39;me gusta peros y gatos&#39;</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">LaBSELanguage</span>
+<span class="n">lang</span> <span class="o">=</span> <span class="n">LaBSELanguage</span><span class="p">()</span>
+
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ik vind honden leuk&#39;</span><span class="p">,</span> <span class="s1">&#39;i really like dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;me gusta los perros!&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;let us talk about money&#39;</span><span class="p">,</span> <span class="s1">&#39;laten we over geld praten&#39;</span><span class="p">,</span> <span class="s1">&#39;hablemos de dinero&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;los stroopwafels son impresionantes&#39;</span><span class="p">,</span> <span class="s1">&#39;stroopwafels zijn heerlijk&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;give me more stroopwafels&#39;</span><span class="p">]</span>
+
+<span class="n">lang</span><span class="p">[</span><span class="n">texts</span><span class="p">]</span><span class="o">.</span><span class="n">plot_similarity</span><span class="p">()</span>
 </code></pre></div>
+<p><img alt="" src="https://rasahq.github.io/whatlies/images/labse.png" /></p>
                 
                   
                 
