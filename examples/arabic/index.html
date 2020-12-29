@@ -1027,6 +1027,13 @@ the following benchmarks.</p>
 <p>Let's first make a visualisation that helps us explore the embeddings. We'll
 look at a few examples by embedding them and reducing their dimensionality via
 Umap.</p>
+<p>df = pd.concat([
+    pd.read_csv("test_Arabic_tweets_negative_20190413.tsv", sep="\t", names=["label", "text"]),
+    pd.read_csv("test_Arabic_tweets_positive_20190413.tsv", sep="\t", names=["label", "text"])
+], axis=0).loc[lambda d: d['text'].str.len() &lt; 200].sample(frac=1).reset_index(drop=True).drop_duplicates()</p>
+<p>small_text_list = list(set(df[:500]['text']))
+small_labels = df[:800]['label']</p>
+<p>len(small_text_list), len(small_labels)
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Umap</span>
@@ -1038,6 +1045,12 @@ Umap.</p>
 <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span>
 
+<span class="c1"># Next we clean the dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
+  <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">]</span>
+  <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
 <span class="c1"># Sample a small list such that the interactive charts render swiftly.</span>
 <span class="n">small_text_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[:</span><span class="mi">1000</span><span class="p">][</span><span class="s1">&#39;text&#39;</span><span class="p">]))</span>
@@ -1049,7 +1062,7 @@ Umap.</p>
             <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
 
 <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_bp2</span><span class="p">,</span> <span class="s2">&quot;bp_big&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_hf</span><span class="p">,</span> <span class="s2">&quot;huggingface&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></p>
 <div id="vis1"></div>
 
 <script>
@@ -1132,9 +1145,11 @@ won't give us an upper limit of what we might be able to achieve after fine-tuni
 as a reasonable lower bound of what we could expect.</li>
 <li>Besides testing the effect of the embedding we'll also have a look at the effect of training set size (<code>train_size</code>),
 parameter smoothing (<code>smooth</code>) on the logistic regression and the effect of adding subword countvectors (<code>ngram</code>).</li>
+<li>The benchmark will take a while! You migth even think it gets stuck when it hits the 75% mark. If this
+happens to you; it's likely not stuck. You're experiencing the compute time required for transformer models.</li>
 </ol>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
-<p>You can play with the full dataset by exploring the parallel coordinates chart
+<p>You can play with the full benchmark dataset by exploring the parallel coordinates chart
 in a seperate tab <a href="hiplot-results.html">here</a> but we'll focus on the most important
 observations below.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
@@ -1179,7 +1194,8 @@ beware of overfitting.</p>
 maybe you've got a use-case where you need even more predictive power. Either way, we hope you
 see the potential for this library when it comes to rapid prototyping. The goal here wasn't to
 be "state of the art". Rather; whatlies allows you to try out a whole bunch of embeddings relatively
-quickly so you don't need to worry about integrating with all sorts of embedding backends.</p>
+quickly so you don't need to worry about integrating with all sorts of embedding backends when
+you're just starting out.</p>
 <p>If you're curious about extending this benchmark; feel absolutely free! You might want to try
 out the <code>LaBSELanguage</code>. It's a multi-language model that should support 100+ languages. We'd also
 love to hear if there's useful tricks we're missing out on. We're especially keen to hear if there's
