@@ -1002,7 +1002,15 @@
 <p>One of the goals of this package is to make it simple to explore embeddings.
 This includes embeddings that are Non-English. In this guide we'll demonstrate how you might be
 able to use this library to run simple Arabic classification benchmark
-using scikit-learn and this library.</p>
+using scikit-learn and this library. This benchmark was part of discussion
+on <a href="https://github.com/RasaHQ/whatlies/issues/262">github</a>.</p>
+<p>If you want to follow along, make sure that this tool is installed.</p>
+<div class="highlight"><pre><span></span><code>pip install whatlies
+</code></pre></div>
+<p>If you'd like to also try out the heavy transformer model, you'll also
+want to install extra dependencies.</p>
+<div class="highlight"><pre><span></span><code>pip install &quot;whatlies[transformers]&quot;
+</code></pre></div>
 <h2 id="finding-embeddings">Finding Embeddings<a class="headerlink" href="#finding-embeddings" title="Permanent link">&para;</a></h2>
 <p>For Arabic there are many sources of embeddings. In this benchmark we'll
 limit ourselves to <a href="https://nlp.h-its.org/bpemb/ar/">BytePair</a>
@@ -1013,27 +1021,25 @@ there's also pretrained subword-embeddings in <a href="https://fasttext.cc/docs/
 There's also support for the Egyptian dialect but we'll ignore these for now.</p>
 <h2 id="the-task">The Task<a class="headerlink" href="#the-task" title="Permanent link">&para;</a></h2>
 <p>The task we'll benchmark is sentiment analysis for
-<a href="https://www.kaggle.com/mksaad/arabic-sentiment-twitter-corpus">arabic tweets</a>. This benchmark
-was part of discussion on <a href="https://github.com/RasaHQ/whatlies/issues/262">github</a>. We'll explore
-the following benchmarks.</p>
+<a href="https://www.kaggle.com/mksaad/arabic-sentiment-twitter-corpus">arabic tweets</a>. It's a simple classification problem with
+two classes; positive and negative. We'll assume the labels for the dataset are accurate but we should
+remind ourselves to check correctness later if we intend to use this dataset for a real life use-case. For
+more info on this topic <a href="https://www.youtube.com/watch?v=Czto6GzJah8&amp;list=PL75e0qA87dlG-za8eLI6t0_Pbxafk-cxb&amp;index=32&amp;ab_channel=Rasa">watch here</a>.</p>
 <h2 id="explore">Explore<a class="headerlink" href="#explore" title="Permanent link">&para;</a></h2>
-<p>To start exploring the embeddings, we'll first need to load them.</p>
+<p>Before you run the big benchmark, it makes sense to explore the embeddings first.</p>
+<p>Let's start by loading them in.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">whatlies.language</span> <span class="kn">import</span> <span class="n">BytePairLanguage</span><span class="p">,</span> <span class="n">HFTransformersLanguage</span>
 
 <span class="n">lang_bp1</span> <span class="o">=</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;ar&quot;</span><span class="p">,</span> <span class="n">vs</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">lang_bp2</span> <span class="o">=</span> <span class="n">BytePairLanguage</span><span class="p">(</span><span class="s2">&quot;ar&quot;</span><span class="p">,</span> <span class="n">vs</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Feel free to remove `lang_hf` from the benchmark if you want want quick results.</span>
+<span class="c1"># These BERT-style embeddings are very compute heavy and can take a while to benchmark.</span>
 <span class="n">lang_hf</span> <span class="o">=</span> <span class="n">HFTransformersLanguage</span><span class="p">(</span><span class="s2">&quot;asafaya/bert-base-arabic&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Let's first make a visualisation that helps us explore the embeddings. We'll
-look at a few examples by embedding them and reducing their dimensionality via
+<p>A popular method of visualising embeddings is to make a scatterplot of clusters. We'll
+look at a few text examples by embedding them and reducing their dimensionality via
 Umap.</p>
-<p>df = pd.concat([
-    pd.read_csv("test_Arabic_tweets_negative_20190413.tsv", sep="\t", names=["label", "text"]),
-    pd.read_csv("test_Arabic_tweets_positive_20190413.tsv", sep="\t", names=["label", "text"])
-], axis=0).loc[lambda d: d['text'].str.len() &lt; 200].sample(frac=1).reset_index(drop=True).drop_duplicates()</p>
-<p>small_text_list = list(set(df[:500]['text']))
-small_labels = df[:800]['label']</p>
-<p>len(small_text_list), len(small_labels)
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">whatlies.transformers</span> <span class="kn">import</span> <span class="n">Umap</span>
@@ -1062,7 +1068,9 @@ small_labels = df[:800]['label']</p>
             <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
 
 <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_bp2</span><span class="p">,</span> <span class="s2">&quot;bp_big&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">mk_plot</span><span class="p">(</span><span class="n">lang_hf</span><span class="p">,</span> <span class="s2">&quot;huggingface&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>The results of this code are viewable below. Note that these charts are fully interactive
+and they'll show the text containing the tweets when you hover over them.</p>
 <div id="vis1"></div>
 
 <script>
@@ -1096,11 +1104,12 @@ how you might quickly prototype a solution using whatlies.</p>
 <span class="p">)</span>
 
 <span class="c1"># Create a dictionary with all of our embedding settings.</span>
+<span class="c1"># Note that we&#39;ve removed lang_hf in order to make it easy to run on a laptop.</span>
 <span class="n">embedders</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;nada&#39;</span><span class="p">:</span> <span class="s1">&#39;drop&#39;</span><span class="p">,</span>
     <span class="s1">&#39;bp1&#39;</span><span class="p">:</span> <span class="n">lang_bp1</span><span class="p">,</span>
     <span class="s1">&#39;bp2&#39;</span><span class="p">:</span> <span class="n">lang_bp2</span><span class="p">,</span>
-    <span class="s1">&#39;hf&#39;</span><span class="p">:</span> <span class="n">lang_hf</span>
+    <span class="c1"># &#39;hf&#39;: lang_hf</span>
 <span class="p">}</span>
 
 <span class="nd">@memfile</span><span class="p">(</span><span class="s2">&quot;arabic-sentences-benchmark.jsonl&quot;</span><span class="p">)</span>
@@ -1145,8 +1154,8 @@ won't give us an upper limit of what we might be able to achieve after fine-tuni
 as a reasonable lower bound of what we could expect.</li>
 <li>Besides testing the effect of the embedding we'll also have a look at the effect of training set size (<code>train_size</code>),
 parameter smoothing (<code>smooth</code>) on the logistic regression and the effect of adding subword countvectors (<code>ngram</code>).</li>
-<li>The benchmark will take a while! You migth even think it gets stuck when it hits the 75% mark. If this
-happens to you; it's likely not stuck. You're experiencing the compute time required for transformer models.</li>
+<li>The benchmark will take a while! We've turned off the huggingface model so that you can get quick results
+ locally but we will show our results below.</li>
 </ol>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p>You can play with the full benchmark dataset by exploring the parallel coordinates chart
@@ -1195,7 +1204,8 @@ maybe you've got a use-case where you need even more predictive power. Either wa
 see the potential for this library when it comes to rapid prototyping. The goal here wasn't to
 be "state of the art". Rather; whatlies allows you to try out a whole bunch of embeddings relatively
 quickly so you don't need to worry about integrating with all sorts of embedding backends when
-you're just starting out.</p>
+you're just starting out. This benchmark alone should not be considered as "enough" evidence to
+put a model into production, but it might be enough evidence to continue iterating.</p>
 <p>If you're curious about extending this benchmark; feel absolutely free! You might want to try
 out the <code>LaBSELanguage</code>. It's a multi-language model that should support 100+ languages. We'd also
 love to hear if there's useful tricks we're missing out on. We're especially keen to hear if there's
