@@ -364,30 +364,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutorial/languages/" title="Language Options" class="md-nav__link">
-      Language Options
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../tutorial/transformations/" title="Transformation Viz" class="md-nav__link">
-      Transformation Viz
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../tutorial/scikit-learn/" title="Scikit-Learn Compatibility" class="md-nav__link">
       Scikit-Learn Compatibility
     </a>
@@ -400,8 +376,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutorial/observations/" title="Observations" class="md-nav__link">
-      Observations
+    <a href="../tutorial/transformations/" title="Transformation Viz" class="md-nav__link">
+      Transformation Viz
     </a>
   </li>
 
@@ -1122,13 +1098,14 @@ in order to achieve 100% width.</p>
 </code></pre>
 <h2 id="languages">Languages<a class="headerlink" href="#languages" title="Permanent link">&para;</a></h2>
 <h3 id="how-do-i-access-nearest-tokens-from-a-language-model">How do I access nearest tokens from a language model?<a class="headerlink" href="#how-do-i-access-nearest-tokens-from-a-language-model" title="Permanent link">&para;</a></h3>
-<p>This depends on the language model, please check the docs, but most
-language models will have a <code>score_similar</code> method attached.</p>
+<p>This depends on the language model. If a language model isn't based on a vocabulary
+ then we won't be able to retreive embeddings for it. Please check the docs if a
+  language model has a <code>score_similar</code> method attached. For those that do, you can do:</p>
 <pre><code class="language-python">from whatlies.language import BytePairLanguage
 lang = BytePairLanguage(&quot;en&quot;)
 lang.score_similar(&quot;king&quot;)
 </code></pre>
-<p>This code snippet will return yield;</p>
+<p>This code snippet will return:</p>
 <pre><code class="language-python">[(Emb[king], 1.1102230246251565e-16),
  (Emb[▁king], 0.23501371664985227),
  (Emb[iv], 0.33016763827104456),
@@ -1220,7 +1197,7 @@ compatible versions.</p>
       <div class="md-footer-nav">
         <nav class="md-footer-nav__inner md-grid">
           
-            <a href="../tutorial/observations/" title="Observations" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <a href="../tutorial/transformations/" title="Transformation Viz" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
                 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
               </div>
@@ -1229,7 +1206,7 @@ compatible versions.</p>
                   <span class="md-footer-nav__direction">
                     Previous
                   </span>
-                  Observations
+                  Transformation Viz
                 </span>
               </div>
             </a>

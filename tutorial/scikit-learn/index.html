@@ -362,30 +362,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../languages/" title="Language Options" class="md-nav__link">
-      Language Options
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../transformations/" title="Transformation Viz" class="md-nav__link">
-      Transformation Viz
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -454,8 +430,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../observations/" title="Observations" class="md-nav__link">
-      Observations
+    <a href="../transformations/" title="Transformation Viz" class="md-nav__link">
+      Transformation Viz
     </a>
   </li>
 
@@ -995,11 +971,13 @@ to the logistic regression.</p>
 
 <span class="n">preprocess</span> <span class="o">=</span> <span class="n">FeatureUnion</span><span class="p">([</span>
     <span class="p">(</span><span class="s2">&quot;dense&quot;</span><span class="p">,</span> <span class="n">SpacyLanguage</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s2">&quot;sparse&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">())</span>
+    <span class="p">(</span><span class="s2">&quot;sparse_word&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s2">&quot;sparse_subword&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="s2">&quot;char&quot;</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
 <span class="p">])</span>
 </code></pre></div>
 <h3 id="supported-models">Supported Models<a class="headerlink" href="#supported-models" title="Permanent link">&para;</a></h3>
-<p>The following language backends can be used as scikit-learn feature transformations.</p>
+<p>Every language backend that this library offers is compatible for use in a scikit-learn
+pipeline. This includes the following;</p>
 <ul>
 <li><code>whatlies.language.SpacyLanguage</code></li>
 <li><code>whatlies.language.FasttextLanguage</code></li>
@@ -1010,14 +988,18 @@ to the logistic regression.</p>
 <li><code>whatlies.language.TFHubLanguage</code></li>
 <li><code>whatlies.language.UniversalSentenceLanguage</code></li>
 <li><code>whatlies.language.SentenceTFMLanguage</code></li>
+<li><code>whatlies.language.UniversalSentenceLanguage</code></li>
+<li><code>whatlies.language.LaBSELanguage</code></li>
 </ul>
 <h3 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h3>
-<p>There's a few caveats to be aware of though. Fasttext as well as spaCy cannot be directly pickled
-so that means that you won't be able to save a pipeline if there's a whatlies component
-in it. This also means that you cannot use a gridsearch. Where possible we try to
+<p>There's a few caveats to be aware of though. In general these language backends cannot be
+directly pickled so that means that you won't be able to save a pipeline if there's a whatlies
+component in it. This also means that you cannot use a gridsearch. Where possible we try to
 test against scikit-learn's testing utilities but for now the use-case is limited for use in
-a <code>Pipeline</code>. You should assume that you cannot use <code>GridSearchCV</code> and that you cannot pickle to disk.</p>
-<p>If you see a way to properly support this in general, let us know on github by creating an <a href="https://github.com/RasaHQ/whatlies/issues">issue</a>.</p>
+a <code>Pipeline</code>. You should assume that you cannot use <code>GridSearchCV</code> and that you cannot pickle
+to disk.</p>
+<p>If you see a way to properly support this in general, let us know on github by
+creating an <a href="https://github.com/RasaHQ/whatlies/issues">issue</a>.</p>
                 
                   
                 
@@ -1039,7 +1021,7 @@ a <code>Pipeline</code>. You should assume that you cannot use <code>GridSearchC
       <div class="md-footer-nav">
         <nav class="md-footer-nav__inner md-grid">
           
-            <a href="../transformations/" title="Transformation Viz" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <a href="../embeddingsets/" title="Interactive Visualisation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
                 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
               </div>
@@ -1048,19 +1030,19 @@ a <code>Pipeline</code>. You should assume that you cannot use <code>GridSearchC
                   <span class="md-footer-nav__direction">
                     Previous
                   </span>
-                  Transformation Viz
+                  Interactive Visualisation
                 </span>
               </div>
             </a>
           
           
-            <a href="../observations/" title="Observations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <a href="../transformations/" title="Transformation Viz" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span class="md-footer-nav__direction">
                     Next
                   </span>
-                  Observations
+                  Transformation Viz
                 </span>
               </div>
               <div class="md-flex__cell md-flex__cell--shrink">
